@@ -30,6 +30,8 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # Now simply link against gtest or gtest_main as needed. Eg
-add_executable(dynarray main.cpp)
-target_link_libraries(dynarray gtest_main)
-add_test(NAME dynarray_test COMMAND dynarray)
+file(GLOB_RECURSE SOURCES "src/*.cpp")
+
+add_executable(dynarray_test ${SOURCES})
+target_link_libraries(dynarray_test gtest_main)
+add_test(NAME dynarray_test COMMAND dynarray_test)
