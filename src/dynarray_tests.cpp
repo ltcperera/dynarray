@@ -17,9 +17,17 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-
 #include "gtest/gtest.h"
+#include "dynarray.hpp"
 
-TEST(SimpleTest, Negative) {
-  EXPECT_EQ(1, 1);
+/**
+ * Tests swap function by passing two variables
+ *   and testing if their values were swapped.
+ */
+TEST(DynArray, swap) {
+  int a = 5;
+  int b = 10;
+  swap(a, b);
+  EXPECT_EQ(a, 10);
+  EXPECT_EQ(b, 5);
 }

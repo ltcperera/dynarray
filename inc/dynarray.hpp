@@ -27,52 +27,86 @@ template <class T>
 class dynarray
 {
 public:
-    dynarray(unsigned int size);
-    ~dynarray();
-    T element_at(unsigned int index);
-    bool insert_element(unsigned int index, T element);
-    bool delete_element(unsigned int index);
-    unsigned int array_size();
-    bool is_empty();
+  dynarray(unsigned int size);
+  ~dynarray();
+  T element_at(unsigned int index);
+  bool insert_element(unsigned int index, T element);
+  bool delete_element(unsigned int index);
+  unsigned int array_size();
+  bool is_empty();
 private:
-    unsigned int resize_array(unsigned int newsize);
-    T *mp_array;
-    unsigned int m_array_size;	// Size allocated for the array
-    unsigned int m_last_index;	// The last index of the array
+  bool resize_array(int newsize);
+  T *mp_array;
+  unsigned int m_array_size;	// Size allocated for the array
+  unsigned int m_last_index;	// The last index of the array
 };
 
-/**
- * Resize the array by the specified size
- */
 template <class T>
-unsigned int dynarray<T>::resize_array(unsigned int newsize) {
-
+void swap(T &first, T &second) {
+  T temp = first;
+  first = second;
+  second = temp;
 }
 
 /**
- * Constructor with initial size
+ * Resize the array by the specified size. The function creates a new array
+ *   of the specified size and copies the contents from the old array to the
+ *   new array. The old array is deallocated. The function also updates the
+ *   size of the dynamic array to the new size.
+ */
+template <class T>
+bool dynarray<T>::resize_array(int newsize) {
+  bool retval = false;
+
+  // Allocate new array of specified capacity
+  T *p_new_array = new T[newsize]{}; // Initialize the elements to 0s
+  if (p_new_array) {
+    // Copy over elements from old array to new array
+    for (unsigned int i = 0; i < m_array_size; ++i) {
+      p_new_array[i] = mp_array[i];
+    }
+
+    // De-allocate the old array and make it point to the new array
+    delete []mp_array;
+    mp_array = p_new_array;
+
+    // Update the new size of the array
+    m_array_size = newsize;
+    retval = true;
+  }
+
+  return retval;
+}
+
+/**
+ * Constructor with initial size for the dynamic array.
  */
 template <class T>
 dynarray<T>::dynarray(unsigned int size)
 {
-    mp_array = new (std::nothrow) T[size]{}; // Initialize array elements to 0s
-    m_array_size = 0;
-    m_last_index = 0;
+  // At least allocate an array of size 1
+  if (size < 1) {
+    size = 1;
+  }
 
-    // Set the size if the allocation is successful
-    if (mp_array) {
-        m_array_size = size;
-    }
+  mp_array = new (std::nothrow) T[size]{}; // Initialize array elements to 0s
+  m_array_size = 0;
+  m_last_index = 0;
+
+  // Set the size if the allocation is successful
+  if (mp_array) {
+      m_array_size = size;
+  }
 }
 
 /**
- * Destructor
+ * Destructor deallocates memory allocated for the dynamic array
  */
 template <class T>
 dynarray<T>::~dynarray()
 {
-    delete[] mp_array;
-    mp_array = NULL;
+  delete[] mp_array;
+  mp_array = NULL;
 }
 
 /**
@@ -88,7 +122,7 @@ T dynarray<T>::element_at(unsigned int index)
 		retVal = mp_array[index];
 	}
 
-    return retVal;
+  return retVal;
 }
 
 /**
@@ -99,11 +133,23 @@ T dynarray<T>::element_at(unsigned int index)
 template <class T>
 bool dynarray<T>::insert_element(unsigned int index, T element)
 {
-	// if index >= m_array_size, resize the array
-	// if index > m_last_index, m_last_index = index
-	// mp_array[index] = element
+  bool retval = true; // Assume successful
+  // if index >= m_array_size, resize the array
+  if (index >= m_array_size) {
+    retval = resize_array();
+  }
 
-	return false;
+  if (retval == true) {
+	  // Advance the last array index
+    if (index > m_last_index) {
+      m_last_index = index;
+    }
+
+    // Store the element in the specified location
+	  mp_array[index] = element;
+  }
+
+	return retval;
 }
 
 /**

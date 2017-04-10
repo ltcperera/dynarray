@@ -1,3 +1,5 @@
+cmake_minimum_required (VERSION 3.5)
+
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
@@ -30,6 +32,11 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # Now simply link against gtest or gtest_main as needed. Eg
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+include_directories("inc")
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 add_executable(dynarray_test ${SOURCES})
