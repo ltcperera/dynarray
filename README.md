@@ -8,5 +8,7 @@ as new elements are added.
 The project will download and build the Google Test framework as a dependency
 first, followed by building the tests for the dynamic array library.
 
+~~~
   cmake .
   make
+~~~
