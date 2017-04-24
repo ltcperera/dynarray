@@ -20,14 +20,35 @@
 #include "gtest/gtest.h"
 #include "dynarray.hpp"
 
-/**
- * Tests swap function by passing two variables
- *   and testing if their values were swapped.
- */
-TEST(DynArray, swap) {
+/// Tests swap function by passing two variables
+///  and testing if their values were swapped.
+TEST(Utility, swap) {
   int a = 5;
   int b = 10;
   swap(a, b);
   EXPECT_EQ(a, 10);
   EXPECT_EQ(b, 5);
+}
+
+/// Tests default constructor that constructs a 0 length array
+TEST(Construction, ZeroLength) {
+  dynarray<int> arr;
+  EXPECT_EQ(arr.array_capacity(), 0);
+}
+
+/// Tests constructor with specified array length
+TEST(Construction, SpesifiedLength) {
+  dynarray<int> arr(20);
+  EXPECT_EQ(arr.array_capacity(), 20);
+}
+
+/// Tests insertion of elements with resize operation
+TEST(Insertion, ResizeOperationInsertAtBeginning) {
+  dynarray<int> arr;
+
+  // Insert element at 0th index
+  arr.insert_element(0, 1);
+
+  // Expect the array to resize by 1
+  EXPECT_EQ(arr.array_capacity(), 1);
 }
