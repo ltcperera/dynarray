@@ -20,6 +20,13 @@
 #include "gtest/gtest.h"
 #include "dynarray.hpp"
 
+// Prevent C++ compiler from mangling C names
+//   so that linker is able to find the functions
+extern "C"
+{
+  #include "cdynarray.h"
+}
+
 /// Tests swap function by passing two variables
 ///  and testing if their values were swapped.
 TEST(Utility, swap) {
@@ -51,4 +58,12 @@ TEST(Insertion, ResizeOperationInsertAtBeginning) {
 
   // Expect the array to resize by 1
   EXPECT_EQ(arr.array_capacity(), 1);
+}
+
+/// ======================
+/// Tests for C-Interfaces
+/// ======================
+TEST(Construction, Initialization)
+{
+  EXPECT_EQ(sizeof(int), sizeof(int*));
 }
