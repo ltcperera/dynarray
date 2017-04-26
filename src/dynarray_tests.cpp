@@ -63,7 +63,12 @@ TEST(Insertion, ResizeOperationInsertAtBeginning) {
 /// ======================
 /// Tests for C-Interfaces
 /// ======================
-TEST(Construction, Initialization)
+TEST(CInterface, Construction)
 {
-  EXPECT_EQ(sizeof(int), sizeof(int*));
+  // Allocate dynamic array for 10 integers
+  DYNARRAY_HANDLE handle = init_array(10, sizeof(int));
+  EXPECT_EQ(array_capacity(handle), 10);
+
+  // De-allocate the array
+  free_array(handle);
 }

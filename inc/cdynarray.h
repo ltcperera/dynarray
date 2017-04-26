@@ -23,6 +23,15 @@
 #define __CDYNARRAY_H
 #include <stdlib.h>
 
-void *init_array(size_t num_elements, size_t size_of_element);
+typedef void* DYNARRAY_HANDLE; /* Handle to array metadata passed around */
+
+/* Initialize a dynamic array and return a handle to the array created */
+DYNARRAY_HANDLE init_array(size_t num_elements, size_t size_of_element);
+
+/* Free the dynamic array specified by the handle */
+void free_array(DYNARRAY_HANDLE handle);
+
+/* Get the capacity of the backing array */
+unsigned int array_capacity(DYNARRAY_HANDLE handle);
 
 #endif
