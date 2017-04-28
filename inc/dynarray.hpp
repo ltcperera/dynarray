@@ -41,8 +41,8 @@ private:
 
 /// Function Swaps the values of the first and second arguments passed
 ///
-/// @param[in,out] reference to first item to swap
-/// @param[in,out] reference to second item to swap
+/// @param[in,out] first reference to first item to swap
+/// @param[in,out] second reference to second item to swap
 template <class T>
 void swap(T &first, T &second)
 {
@@ -141,6 +141,7 @@ T dynarray<T>::element_at(unsigned int index)
 ///
 /// @param[in] index A zero-based index ranging from from 0 to the size
 ///                  of the array - 1.
+/// @param[in] element The item to be inserted into the dynamic array.
 template <class T>
 bool dynarray<T>::insert_element(unsigned int index, T element)
 {
