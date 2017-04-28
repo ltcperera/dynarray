@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['delete_5felement',['delete_element',['../classdynarray.html#ab817a306dce86fac79283d609bf4520f',1,'dynarray']]],
+  ['delete_5felement',['delete_element',['../classdynarray.html#ab817a306dce86fac79283d609bf4520f',1,'dynarray::delete_element()'],['../cdynarray_8c.html#ac8516e225f70ef237a4c0a7646285e59',1,'delete_element(DYNARRAY_HANDLE handle, unsigned int index):&#160;cdynarray.c'],['../cdynarray_8h.html#ac8516e225f70ef237a4c0a7646285e59',1,'delete_element(DYNARRAY_HANDLE handle, unsigned int index):&#160;cdynarray.c']]],
   ['dynarray',['dynarray',['../classdynarray.html',1,'dynarray&lt; T &gt;'],['../classdynarray.html#a4c255f89e4c2b00b857f9e292fbe4850',1,'dynarray::dynarray()']]],
   ['dynarray_2ehpp',['dynarray.hpp',['../dynarray_8hpp.html',1,'']]],
   ['dynarray_5fhandle',['DYNARRAY_HANDLE',['../cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2',1,'cdynarray.h']]],

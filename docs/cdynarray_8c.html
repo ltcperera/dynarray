@@ -99,7 +99,7 @@ Include dependency graph for cdynarray.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="cdynarray_8c__incl.png" border="0" usemap="#src_2cdynarray_8c" alt=""/></div>
 <map name="src_2cdynarray_8c" id="src_2cdynarray_8c">
-<area shape="rect" id="node2" href="cdynarray_8h.html" title="cdynarray.h" alt="" coords="5,80,96,107"/>
+<area shape="rect" id="node2" href="cdynarray_8h.html" title="cdynarray.h" alt="" coords="39,80,129,107"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -119,6 +119,10 @@ Functions</h2></td></tr>
 <tr class="separator:a1fce1aca3eeaf5871f3e9f6942b63242"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab015c4dcd27d110d6566b23496ff1b08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8c.html#ab015c4dcd27d110d6566b23496ff1b08">free_array</a> (<a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a> handle)</td></tr>
 <tr class="separator:ab015c4dcd27d110d6566b23496ff1b08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29ea62568a08ae0d7764f5e311e6bc9b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8c.html#a29ea62568a08ae0d7764f5e311e6bc9b">insert_element</a> (<a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a> handle, unsigned int index, void *p_data)</td></tr>
+<tr class="separator:a29ea62568a08ae0d7764f5e311e6bc9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8516e225f70ef237a4c0a7646285e59"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8c.html#ac8516e225f70ef237a4c0a7646285e59">delete_element</a> (<a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a> handle, unsigned int index)</td></tr>
+<tr class="separator:ac8516e225f70ef237a4c0a7646285e59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac90666c9bbe50800bf131973cad4cbd1"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8c.html#ac90666c9bbe50800bf131973cad4cbd1">array_capacity</a> (<a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a> handle)</td></tr>
 <tr class="separator:ac90666c9bbe50800bf131973cad4cbd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -132,6 +136,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Stores tracking information required to manage the array. Each instance of the dynamic array will have its own instance of this structure. </p>
 
 </div>
 </div>
@@ -149,6 +154,40 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns the capacity of the array identified by the specified handle </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>The handle of the dynamic array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the capacity of the allocated backing array </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac8516e225f70ef237a4c0a7646285e59"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool delete_element </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Delete the element specified by the handle and index. </p>
 
 </div>
 </div>
@@ -165,6 +204,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Frees the dynamic array identified by the specified handle </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>The handle of the dynamic array to be freed </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -191,6 +236,48 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Initialize the dynamic array with the number of elements and size per element.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num_elements</td><td>The number of elements to store in the array. </td></tr>
+    <tr><td class="paramname">size_of_element</td><td>The size of each element in the array. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a29ea62568a08ae0d7764f5e311e6bc9b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool insert_element </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>p_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Insert an element into the array specified by the handle and index.</p>
+<p>If the backing array has reached its capacity, the array will be resized by twice the current capacity. </p>
 
 </div>
 </div>

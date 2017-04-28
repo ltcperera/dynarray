@@ -22,6 +22,7 @@
 #ifndef __CDYNARRAY_H
 #define __CDYNARRAY_H
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef void* DYNARRAY_HANDLE; /* Handle to array metadata passed around */
 
@@ -30,6 +31,12 @@ DYNARRAY_HANDLE init_array(size_t num_elements, size_t size_of_element);
 
 /* Free the dynamic array specified by the handle */
 void free_array(DYNARRAY_HANDLE handle);
+
+/* Insert the specified data item into the dynamic array at the specified index */
+bool insert_element(DYNARRAY_HANDLE handle, unsigned int index, void *p_data);
+
+/* Delete the element at the specified index */
+bool delete_element(DYNARRAY_HANDLE handle, unsigned int index);
 
 /* Get the capacity of the backing array */
 unsigned int array_capacity(DYNARRAY_HANDLE handle);

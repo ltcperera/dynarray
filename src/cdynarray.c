@@ -22,15 +22,21 @@
 
 #include "cdynarray.h"
 #include <stdio.h>
+
+/**
+ * Stores tracking information required to manage the array.
+ * Each instance of the dynamic array will have its own instance of this
+ *   structure.
+ */
 typedef struct _DYNARRAY_METADATA
 {
-  unsigned int capacity;
-  unsigned int last_index;
-  void *p_backing_array; /* The backing array that will hold the array data */
+  unsigned int capacity;   /**< The number of elements that can be stored in the backing array */
+  unsigned int last_index; /**< The last (logical) index of the array */
+  void *p_backing_array;   /**< The backing array that will hold the array data */
 } DYNARRAY_METADATA;
 
-/*
- * Initialize the dynamic array with the number of elements and size per element
+/**
+ * Initialize the dynamic array with the number of elements and size per element.
  *
  * @param num_elements The number of elements to store in the array.
  * @param size_of_element The size of each element in the array.
@@ -72,7 +78,7 @@ DYNARRAY_HANDLE init_array(size_t num_elements, size_t size_of_element)
   return p_meta_data;
 }
 
-/*
+/**
  * Frees the dynamic array identified by the specified handle
  * @param handle The handle of the dynamic array to be freed
  */
@@ -91,7 +97,25 @@ void free_array(DYNARRAY_HANDLE handle)
   }
 }
 
-/*
+/**
+ * Insert an element into the array specified by the handle and index.
+ *
+ * If the backing array has reached its capacity, the array will be resized by
+ * twice the current capacity.
+ */
+bool insert_element(DYNARRAY_HANDLE handle, unsigned int index, void *p_data)
+{
+  return false;
+}
+
+/**
+ * Delete the element specified by the handle and index.
+ */ 
+bool delete_element(DYNARRAY_HANDLE handle, unsigned int index)
+{
+  return false;
+}
+/**
  * Returns the capacity of the array identified by the specified handle
  * @param handle The handle of the dynamic array
  * @return the capacity of the allocated backing array
