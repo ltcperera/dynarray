@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['last_5findex',['last_index',['../struct__DYNARRAY__METADATA.html#abb82ec37ff7ce93d2ebe985d88887b30',1,'_DYNARRAY_METADATA']]]
+  ['m_5fcapacity',['m_capacity',['../classdynarray.html#add8f17820acad451b99f71e4efce750f',1,'dynarray']]],
+  ['mp_5farray',['mp_array',['../classdynarray.html#aed6010db3240f42cf8060ae707a1a64c',1,'dynarray']]]
 ];

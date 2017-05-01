@@ -28,6 +28,7 @@ public:
   dynarray(unsigned int size = 0);
   ~dynarray();
   T element_at(unsigned int index);
+  bool set_element(unsigned int index, T element);
   bool insert_element(unsigned int index, T element);
   bool delete_element(unsigned int index);
   unsigned int array_capacity();
@@ -36,7 +37,6 @@ private:
   bool resize_array(int newsize);
   T *mp_array;
   unsigned int m_capacity;	  // Size allocated for the array
-  unsigned int m_last_index;	// The last index of the array
 };
 
 /// Function Swaps the values of the first and second arguments passed
@@ -106,9 +106,8 @@ dynarray<T>::dynarray(unsigned int size)
   //  does not throw an exception, but rather returns a NULL on failure.
   mp_array = new (std::nothrow) T[size]{};
   m_capacity = 0;
-  m_last_index = 0;
 
-  // Set the size if the allocation is successful
+  // Set the size if the allocation was successful
   if (mp_array) {
       m_capacity = size;
   }
@@ -130,11 +129,33 @@ template <class T>
 T dynarray<T>::element_at(unsigned int index)
 {
 	T retVal = 0;
-	if (mp_array && index <= m_last_index) {
+	if (mp_array && index < m_capacity) {
 		retVal = mp_array[index];
 	}
 
   return retVal;
+}
+
+/// Sets the element at the specified index.
+///
+/// The index needs to be within the capacity of the array. If not the function
+/// will return a failure code.
+///
+/// @param[in] index A zero-based index ranging from from 0 to the size
+///                  of the array - 1.
+/// @param[in] element The element to be stored at the specified index
+/// @return true if successful, false otherwise
+template <class T>
+bool dynarray<T>::set_element(unsigned int index, T element)
+{
+  bool retval = false;
+  if (mp_array && index >= 0 && index < m_capacity) {
+    // Store the element at the index
+    mp_array[index] = element;
+    retval = true;
+  }
+
+  return retval;
 }
 
 /// Insert the specified element at the specified index.
@@ -154,18 +175,12 @@ bool dynarray<T>::insert_element(unsigned int index, T element)
   }
 
   if (retval == true) {
-	  // Advance the last array index
-    if (index > m_last_index) {
-      m_last_index = index;
-    }
-
     // Store the element in the specified location
 	  mp_array[index] = element;
   }
 
 	return retval;
 }
-
 
 /// Delete the element at the specified index.
 ///
@@ -174,7 +189,7 @@ bool dynarray<T>::insert_element(unsigned int index, T element)
 template <class T>
 bool dynarray<T>::delete_element(unsigned int index)
 {
-    return false;
+  return false;
 }
 
 /// Returns the capacity of the backing array
@@ -182,7 +197,7 @@ bool dynarray<T>::delete_element(unsigned int index)
 template <class T>
 unsigned int dynarray<T>::array_capacity()
 {
-    return m_capacity;
+  return m_capacity;
 }
 
 /// Returns whether or not the array is empty
@@ -190,5 +205,5 @@ unsigned int dynarray<T>::array_capacity()
 template <class T>
 bool dynarray<T>::is_empty()
 {
-    return (m_capacity == 0);
+  return (m_capacity == 0);
 }

@@ -33,7 +33,6 @@ typedef struct _DYNARRAY_METADATA
 {
   size_t capacity;           /**< The number of elements that can be stored in the backing array */
   size_t element_size;       /**< The size of each element stored in the array */
-  size_t last_index;         /**< The last (logical) index of the array */
   void *p_backing_array;     /**< The backing array that will hold the array data */
 } DYNARRAY_METADATA;
 
@@ -53,7 +52,6 @@ DYNARRAY_HANDLE init_array(size_t num_elements, size_t element_size)
   if (p_meta_data) {
     /* Initialize metadata structure to known initialization defaults */
     p_meta_data->capacity = 0;
-    p_meta_data->last_index = 0;
 
     /* Meta data structure successfully allocated. Allocate backing array
          that will store the elements of the dynamic array */
@@ -67,9 +65,6 @@ DYNARRAY_HANDLE init_array(size_t num_elements, size_t element_size)
       /* Capacity and element size are set accordingly */
       p_meta_data->capacity = num_elements;
       p_meta_data->element_size = element_size;
-
-      /* We haven't added elements yet. Set the last_index to 0. */
-      p_meta_data->last_index = 0;
     }
     else {
       /* Allocation of backing array failed. De-allocate metadata structure

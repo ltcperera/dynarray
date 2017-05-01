@@ -19,8 +19,7 @@
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
    SOFTWARE.
 */
-#ifndef __CDYNARRAY_H
-#define __CDYNARRAY_H
+#pragma once
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -43,5 +42,3 @@ bool delete_element(DYNARRAY_HANDLE handle, size_t index);
 
 /* Get the capacity of the backing array */
 size_t array_capacity(DYNARRAY_HANDLE handle);
-
-#endif

@@ -27,7 +27,7 @@ extern "C"
   #include "cdynarray.h"
 }
 
-// Structure used to test use of abstract data types with array list
+/// Structure used to test use of abstract data types with array list
 typedef struct
 {
   char title[50];
@@ -69,9 +69,9 @@ TEST(Insertion, ResizeOperationInsertAtBeginning) {
   EXPECT_EQ(arr.array_capacity(), 1);
 }
 
-/// ======================
-/// Tests for C-Interfaces
-/// ======================
+// ======================
+// Tests for C-Interfaces
+// ======================
 
 /// Test construction of a dynamic array using the C interface
 ///   The test allocates the array and checks its capacity.

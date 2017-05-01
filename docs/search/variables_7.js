@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['subject',['subject',['../structBOOK.html#ac48112754ad2e19240774e4484f80d2e',1,'BOOK']]]
+  ['title',['title',['../structBOOK.html#a7fd68ad14497515614bc1ae37f3afbd0',1,'BOOK']]]
 ];

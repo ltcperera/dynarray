@@ -105,6 +105,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7521f467846d2a02c832ac95024392a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9745934e0be5a7fba44bf8cac9aea6a"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdynarray.html#ad9745934e0be5a7fba44bf8cac9aea6a">element_at</a> (unsigned int index)</td></tr>
 <tr class="separator:ad9745934e0be5a7fba44bf8cac9aea6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a579b9cff4dd7d5096ed520fdb5ea0880"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdynarray.html#a579b9cff4dd7d5096ed520fdb5ea0880">set_element</a> (unsigned int index, T element)</td></tr>
+<tr class="separator:a579b9cff4dd7d5096ed520fdb5ea0880"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a045667e98286d275c2ca7dde61d869a1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdynarray.html#a045667e98286d275c2ca7dde61d869a1">insert_element</a> (unsigned int index, T element)</td></tr>
 <tr class="separator:a045667e98286d275c2ca7dde61d869a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab817a306dce86fac79283d609bf4520f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdynarray.html#ab817a306dce86fac79283d609bf4520f">delete_element</a> (unsigned int index)</td></tr>
@@ -125,8 +127,6 @@ Private Attributes</h2></td></tr>
 <tr class="separator:aed6010db3240f42cf8060ae707a1a64c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add8f17820acad451b99f71e4efce750f"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdynarray.html#add8f17820acad451b99f71e4efce750f">m_capacity</a></td></tr>
 <tr class="separator:add8f17820acad451b99f71e4efce750f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf4ca802aef690c408243248e11bc960"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdynarray.html#acf4ca802aef690c408243248e11bc960">m_last_index</a></td></tr>
-<tr class="separator:acf4ca802aef690c408243248e11bc960"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class T&gt;<br />
@@ -336,6 +336,44 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a579b9cff4dd7d5096ed520fdb5ea0880"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classdynarray.html">dynarray</a>&lt; T &gt;::set_element </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>element</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets the element at the specified index.</p>
+<p>The index needs to be within the capacity of the array. If not the function will return a failure code.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>A zero-based index ranging from from 0 to the size of the array - 1. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">element</td><td>The element to be stored at the specified index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if successful, false otherwise </dd></dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a class="anchor" id="add8f17820acad451b99f71e4efce750f"></a>
 <div class="memitem">
@@ -348,28 +386,6 @@ template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">unsigned int <a class="el" href="classdynarray.html">dynarray</a>&lt; T &gt;::m_capacity</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="acf4ca802aef690c408243248e11bc960"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int <a class="el" href="classdynarray.html">dynarray</a>&lt; T &gt;::m_last_index</td>
         </tr>
       </table>
   </td>
