@@ -97,11 +97,6 @@ bool dynarray<T>::resize_array(int newsize)
 template <class T>
 dynarray<T>::dynarray(unsigned int size)
 {
-  // At least allocate an array of size 0
-  if (size < 0) {
-    size = 0;
-  }
-
   // Initialize array elements to 0s. Ensure that allocation
   //  does not throw an exception, but rather returns a NULL on failure.
   mp_array = new (std::nothrow) T[size]{};
