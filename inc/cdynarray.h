@@ -33,15 +33,15 @@ DYNARRAY_HANDLE init_array(size_t num_elements, size_t size_of_element);
 void free_array(DYNARRAY_HANDLE handle);
 
 /* Insert the specified data item into the dynamic array at the specified index */
-bool set_element(DYNARRAY_HANDLE handle, unsigned int index, void *p_data);
+bool set_element(DYNARRAY_HANDLE handle, size_t index, void *p_data);
 
 /* Insert the specified data item into the dynamic array at the specified index */
-bool insert_element(DYNARRAY_HANDLE handle, unsigned int index, void *p_data);
+bool insert_element(DYNARRAY_HANDLE handle, size_t index, void *p_data);
 
 /* Delete the element at the specified index */
-bool delete_element(DYNARRAY_HANDLE handle, unsigned int index);
+bool delete_element(DYNARRAY_HANDLE handle, size_t index);
 
 /* Get the capacity of the backing array */
-unsigned int array_capacity(DYNARRAY_HANDLE handle);
+size_t array_capacity(DYNARRAY_HANDLE handle);
 
 #endif

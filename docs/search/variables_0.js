@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['capacity',['capacity',['../struct__DYNARRAY__METADATA.html#a93d41b7b930d3ebe0b5e5409d2ee44d9',1,'_DYNARRAY_METADATA']]]
+  ['author',['author',['../structBOOK.html#a98270841c484196fcb89cc95eedd59c6',1,'BOOK']]]
 ];

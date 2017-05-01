@@ -31,9 +31,9 @@
  */
 typedef struct _DYNARRAY_METADATA
 {
-  unsigned int capacity;     /**< The number of elements that can be stored in the backing array */
-  unsigned int element_size; /**< The size of each element stored in the array */
-  unsigned int last_index;   /**< The last (logical) index of the array */
+  size_t capacity;           /**< The number of elements that can be stored in the backing array */
+  size_t element_size;       /**< The size of each element stored in the array */
+  size_t last_index;         /**< The last (logical) index of the array */
   void *p_backing_array;     /**< The backing array that will hold the array data */
 } DYNARRAY_METADATA;
 
@@ -41,7 +41,7 @@ typedef struct _DYNARRAY_METADATA
  * Initialize the dynamic array with the number of elements and size per element.
  *
  * @param num_elements The number of elements to store in the array.
- * @param size_of_element The size of each element in the array.
+ * @param element_size The size of each element in the array.
  */
 DYNARRAY_HANDLE init_array(size_t num_elements, size_t element_size)
 {
@@ -111,7 +111,7 @@ void free_array(DYNARRAY_HANDLE handle)
  * @param index The position to store the data element.
  * @param p_data The data to be stored.
  */
-bool set_element(DYNARRAY_HANDLE handle, unsigned int index, void *p_data)
+bool set_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
 {
   bool status = false;
   if (handle) {
@@ -142,7 +142,7 @@ bool set_element(DYNARRAY_HANDLE handle, unsigned int index, void *p_data)
  * @param index The position to store the data element.
  * @param p_data The data to be stored.
  */
-bool insert_element(DYNARRAY_HANDLE handle, unsigned int index, void *p_data)
+bool insert_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
 {
   return false;
 }
@@ -153,7 +153,7 @@ bool insert_element(DYNARRAY_HANDLE handle, unsigned int index, void *p_data)
  * @param handle The handle of the dynamic array to be freed
  * @param index The position of the data element to be removed
  */
-bool delete_element(DYNARRAY_HANDLE handle, unsigned int index)
+bool delete_element(DYNARRAY_HANDLE handle, size_t index)
 {
   return false;
 }
@@ -164,9 +164,9 @@ bool delete_element(DYNARRAY_HANDLE handle, unsigned int index)
  * @param handle The handle of the dynamic array
  * @return the capacity of the allocated backing array
  */
-unsigned int array_capacity(DYNARRAY_HANDLE handle)
+size_t array_capacity(DYNARRAY_HANDLE handle)
 {
-  unsigned int capacity = 0;
+  size_t capacity = 0;
 
   if (handle) {
     // Handle is non-zero, get DYNARRAY_METADATA from handle

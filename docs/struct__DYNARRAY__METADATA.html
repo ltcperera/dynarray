@@ -91,22 +91,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a93d41b7b930d3ebe0b5e5409d2ee44d9"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__DYNARRAY__METADATA.html#a93d41b7b930d3ebe0b5e5409d2ee44d9">capacity</a></td></tr>
-<tr class="separator:a93d41b7b930d3ebe0b5e5409d2ee44d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0cd6e75f8ad808489110c30598467dd"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__DYNARRAY__METADATA.html#af0cd6e75f8ad808489110c30598467dd">last_index</a></td></tr>
-<tr class="separator:af0cd6e75f8ad808489110c30598467dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a566021c96a552cf3ee8fb5bcfe5cfab1"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__DYNARRAY__METADATA.html#a566021c96a552cf3ee8fb5bcfe5cfab1">capacity</a></td></tr>
+<tr class="separator:a566021c96a552cf3ee8fb5bcfe5cfab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b528ea375e5dce86ea751c60c3cd8df"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__DYNARRAY__METADATA.html#a0b528ea375e5dce86ea751c60c3cd8df">element_size</a></td></tr>
+<tr class="separator:a0b528ea375e5dce86ea751c60c3cd8df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb82ec37ff7ce93d2ebe985d88887b30"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__DYNARRAY__METADATA.html#abb82ec37ff7ce93d2ebe985d88887b30">last_index</a></td></tr>
+<tr class="separator:abb82ec37ff7ce93d2ebe985d88887b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2d1f614ed35f040e09d0252cc16a3c7"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__DYNARRAY__METADATA.html#ae2d1f614ed35f040e09d0252cc16a3c7">p_backing_array</a></td></tr>
 <tr class="separator:ae2d1f614ed35f040e09d0252cc16a3c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Stores tracking information required to manage the array. Each instance of the dynamic array will have its own instance of this structure. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a93d41b7b930d3ebe0b5e5409d2ee44d9"></a>
+<a class="anchor" id="a566021c96a552cf3ee8fb5bcfe5cfab1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int _DYNARRAY_METADATA::capacity</td>
+          <td class="memname">size_t _DYNARRAY_METADATA::capacity</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -114,12 +116,25 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af0cd6e75f8ad808489110c30598467dd"></a>
+<a class="anchor" id="a0b528ea375e5dce86ea751c60c3cd8df"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int _DYNARRAY_METADATA::last_index</td>
+          <td class="memname">size_t _DYNARRAY_METADATA::element_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The size of each element stored in the array </p>
+
+</div>
+</div>
+<a class="anchor" id="abb82ec37ff7ce93d2ebe985d88887b30"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t _DYNARRAY_METADATA::last_index</td>
         </tr>
       </table>
 </div><div class="memdoc">

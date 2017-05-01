@@ -1,10 +1,10 @@
 var indexSectionsWithContent =
 {
-  0: "_acdefilmprst~",
-  1: "_d",
+  0: "_abcdefilmprst~",
+  1: "_bd",
   2: "cdm",
   3: "adefimrst~",
-  4: "clmp",
+  4: "abcelmpst",
   5: "d"
 };
 

@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['test',['TEST',['../dynarray__tests_8cpp.html#a681f23ad5cc849a91a1e7ed4c1731202',1,'TEST(Utility, swap):&#160;dynarray_tests.cpp'],['../dynarray__tests_8cpp.html#a399eab71c685c6554b1adaef0c496a0b',1,'TEST(Construction, ZeroLength):&#160;dynarray_tests.cpp'],['../dynarray__tests_8cpp.html#a7d944389734af4cb2913f5a3af4131a3',1,'TEST(Construction, SpesifiedLength):&#160;dynarray_tests.cpp'],['../dynarray__tests_8cpp.html#ae2847cbda90ea92cf81f311be1947e4c',1,'TEST(Insertion, ResizeOperationInsertAtBeginning):&#160;dynarray_tests.cpp'],['../dynarray__tests_8cpp.html#a8c22fae014b365bd57c76d5e53dfa0aa',1,'TEST(CInterface, Construction):&#160;dynarray_tests.cpp']]]
+  ['set_5felement',['set_element',['../cdynarray_8c.html#ab1c27c853a9332e591ffbd95df2251af',1,'set_element(DYNARRAY_HANDLE handle, size_t index, void *p_data):&#160;cdynarray.c'],['../cdynarray_8h.html#ab1c27c853a9332e591ffbd95df2251af',1,'set_element(DYNARRAY_HANDLE handle, size_t index, void *p_data):&#160;cdynarray.c']]],
+  ['subject',['subject',['../structBOOK.html#ac48112754ad2e19240774e4484f80d2e',1,'BOOK']]],
+  ['swap',['swap',['../dynarray_8hpp.html#a23d2ffe09a796236ada01d783a46c5fc',1,'dynarray.hpp']]]
 ];
