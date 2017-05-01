@@ -27,6 +27,15 @@ extern "C"
   #include "cdynarray.h"
 }
 
+// Structure used to test use of abstract data types with array list
+typedef struct
+{
+  char title[50];
+  char author[50];
+  char subject[100];
+  int book_id;
+} BOOK;
+
 /// Tests swap function by passing two variables
 ///  and testing if their values were swapped.
 TEST(Utility, swap) {
@@ -63,6 +72,9 @@ TEST(Insertion, ResizeOperationInsertAtBeginning) {
 /// ======================
 /// Tests for C-Interfaces
 /// ======================
+
+/// Test construction of a dynamic array using the C interface
+///   The test allocates the array and checks its capacity.
 TEST(CInterface, Construction)
 {
   // Allocate dynamic array for 10 integers
@@ -71,4 +83,21 @@ TEST(CInterface, Construction)
 
   // De-allocate the array
   free_array(handle);
+}
+
+/// Test the storage of abstract data types in the dynamic array
+TEST(CInterface, AbstractDataTypes)
+{
+  // Build book object that will be stored in the list
+  BOOK book;
+  book.book_id = 1;
+  strncpy(book.title, "Algorithms", 10);
+  strncpy(book.author, "Robert Sedgewick", 16);
+  strncpy(book.subject, "Computer Programming Structured Design", 38);
+
+  // Initialize the dynamic array to store one book
+  DYNARRAY_HANDLE handle = init_array(1, sizeof(BOOK));
+  set_element(handle, 0, &book);
+  free_array(handle);
+  //EXPECT_EQ(sizeof(BOOK), 204);
 }
