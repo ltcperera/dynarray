@@ -27,7 +27,7 @@ class dynarray
 public:
   dynarray(unsigned int size = 0);
   ~dynarray();
-  T element_at(unsigned int index);
+  T get_element(unsigned int index);
   bool set_element(unsigned int index, T element);
   bool insert_element(unsigned int index, T element);
   bool delete_element(unsigned int index);
@@ -126,9 +126,9 @@ dynarray<T>::~dynarray()
 /// @param[in] index A zero-based index ranging from from 0 to the size
 //                   of the array - 1.
 template <class T>
-T dynarray<T>::element_at(unsigned int index)
+T dynarray<T>::get_element(unsigned int index)
 {
-	T retVal = 0;
+	T retVal;
 	if (mp_array && index < m_capacity) {
 		retVal = mp_array[index];
 	}

@@ -123,6 +123,8 @@ Functions</h2></td></tr>
 <tr class="separator:ab015c4dcd27d110d6566b23496ff1b08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1c27c853a9332e591ffbd95df2251af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8h.html#ab1c27c853a9332e591ffbd95df2251af">set_element</a> (<a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a> handle, size_t index, void *p_data)</td></tr>
 <tr class="separator:ab1c27c853a9332e591ffbd95df2251af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96e867e6c275af7ce014c43b038affd5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8h.html#a96e867e6c275af7ce014c43b038affd5">get_element</a> (<a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a> handle, size_t index, void *p_data)</td></tr>
+<tr class="separator:a96e867e6c275af7ce014c43b038affd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb45f2f399753e13f935ecb344a5a96f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8h.html#aeb45f2f399753e13f935ecb344a5a96f">insert_element</a> (<a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a> handle, size_t index, void *p_data)</td></tr>
 <tr class="separator:aeb45f2f399753e13f935ecb344a5a96f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee755c09d18d4c97c5c45243e385fdf1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8h.html#aee755c09d18d4c97c5c45243e385fdf1">delete_element</a> (<a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a> handle, size_t index)</td></tr>
@@ -219,6 +221,47 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">handle</td><td>The handle of the dynamic array to be freed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a96e867e6c275af7ce014c43b038affd5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool get_element </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>p_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Gets the element at the specified index. This function returns the element at the specified index from the dynamic array identified by the specified handle.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>The handle of the dynamic array </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>position of the array element to be returned </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">p_data</td><td>pointer to data element containing data to be returned </td></tr>
   </table>
   </dd>
 </dl>
@@ -333,7 +376,7 @@ Functions</h2></td></tr>
 <p>Stores the specified data element at the location indicated by the index. The index needs to be within the capacity. Any previously stored data at the location is replaced by the new content.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>The handle of the dynamic array to be freed </td></tr>
+    <tr><td class="paramname">handle</td><td>The handle of the dynamic array </td></tr>
     <tr><td class="paramname">index</td><td>The position to store the data element. </td></tr>
     <tr><td class="paramname">p_data</td><td>The data to be stored. </td></tr>
   </table>

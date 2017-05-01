@@ -102,7 +102,7 @@ void free_array(DYNARRAY_HANDLE handle)
  * The index needs to be within the capacity. Any previously stored data at the
  * location is replaced by the new content.
  *
- * @param handle The handle of the dynamic array to be freed
+ * @param handle The handle of the dynamic array
  * @param index The position to store the data element.
  * @param p_data The data to be stored.
  */
@@ -120,6 +120,33 @@ bool set_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
       // Element address is calculated as the base + the size of the data item * index
       void *element_address = p_meta_data->p_backing_array + (p_meta_data->element_size * index);
       memcpy(element_address, p_data, p_meta_data->element_size);
+      status = true;
+    }
+  }
+
+  return status;
+}
+
+/**
+ * Gets the element at the specified index.
+ * This function returns the element at the specified index from the dynamic
+ * array identified by the specified handle.
+ *
+ * @param[in] handle The handle of the dynamic array
+ * @param[in] index position of the array element to be returned
+ * @param[in,out] p_data pointer to data element containing data to be returned
+ */
+bool get_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
+{
+  bool status = false;
+  if (handle) {
+    // Handle is non-zero, get DYNARRAY_METADATA from handle
+    DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA*) handle;
+
+    // Ensure array index is within capacity and backing array is valid
+    if (p_meta_data->p_backing_array && index < p_meta_data->capacity) {
+      void *element_address = p_meta_data->p_backing_array + (p_meta_data->element_size * index);
+      memcpy(p_data, element_address, p_meta_data->element_size);
       status = true;
     }
   }

@@ -31,8 +31,11 @@ DYNARRAY_HANDLE init_array(size_t num_elements, size_t size_of_element);
 /* Free the dynamic array specified by the handle */
 void free_array(DYNARRAY_HANDLE handle);
 
-/* Insert the specified data item into the dynamic array at the specified index */
+/* Set the specified data item within the dynamic array at the specified index */
 bool set_element(DYNARRAY_HANDLE handle, size_t index, void *p_data);
+
+/* Get the data item at the specified index */
+bool get_element(DYNARRAY_HANDLE handle, size_t index, void *p_data);
 
 /* Insert the specified data item into the dynamic array at the specified index */
 bool insert_element(DYNARRAY_HANDLE handle, size_t index, void *p_data);

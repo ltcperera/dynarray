@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['m_5fcapacity',['m_capacity',['../classdynarray.html#add8f17820acad451b99f71e4efce750f',1,'dynarray']]],
-  ['main',['main',['../main_8cpp.html#a7f83bdc516d2cb86e20235d94ddf055a',1,'main.cpp']]],
-  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['mp_5farray',['mp_array',['../classdynarray.html#aed6010db3240f42cf8060ae707a1a64c',1,'dynarray']]]
+  ['init_5farray',['init_array',['../cdynarray_8c.html#ad8621d9b3466d94dbeb9db208ec82a43',1,'init_array(size_t num_elements, size_t element_size):&#160;cdynarray.c'],['../cdynarray_8h.html#a1fce1aca3eeaf5871f3e9f6942b63242',1,'init_array(size_t num_elements, size_t size_of_element):&#160;cdynarray.c']]],
+  ['insert_5felement',['insert_element',['../classdynarray.html#a045667e98286d275c2ca7dde61d869a1',1,'dynarray::insert_element()'],['../cdynarray_8c.html#aeb45f2f399753e13f935ecb344a5a96f',1,'insert_element(DYNARRAY_HANDLE handle, size_t index, void *p_data):&#160;cdynarray.c'],['../cdynarray_8h.html#aeb45f2f399753e13f935ecb344a5a96f',1,'insert_element(DYNARRAY_HANDLE handle, size_t index, void *p_data):&#160;cdynarray.c']]],
+  ['is_5fempty',['is_empty',['../classdynarray.html#a4578fa872c4a72d740b5c27047540f8d',1,'dynarray']]]
 ];

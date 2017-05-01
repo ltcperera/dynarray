@@ -38,7 +38,8 @@ typedef struct
 
 /// Tests swap function by passing two variables
 ///  and testing if their values were swapped.
-TEST(Utility, swap) {
+TEST(Utility, swap)
+{
   int a = 5;
   int b = 10;
   swap(a, b);
@@ -47,19 +48,22 @@ TEST(Utility, swap) {
 }
 
 /// Tests default constructor that constructs a 0 length array
-TEST(Construction, ZeroLength) {
+TEST(CPPInterface, ConstructionZeroLength)
+{
   dynarray<int> arr;
   EXPECT_EQ(arr.array_capacity(), 0);
 }
 
 /// Tests constructor with specified array length
-TEST(Construction, SpesifiedLength) {
+TEST(CPPInterface, ConstructionSpesifiedLength)
+{
   dynarray<int> arr(20);
   EXPECT_EQ(arr.array_capacity(), 20);
 }
 
 /// Tests insertion of elements with resize operation
-TEST(Insertion, ResizeOperationInsertAtBeginning) {
+TEST(CPPInterface, ResizeOperationInsertAtBeginning)
+{
   dynarray<int> arr;
 
   // Insert element at 0th index
@@ -67,6 +71,27 @@ TEST(Insertion, ResizeOperationInsertAtBeginning) {
 
   // Expect the array to resize by 1
   EXPECT_EQ(arr.array_capacity(), 1);
+}
+
+/// Tests insertion of values of abstract data types
+TEST(CPPInterface, InsertADTValues)
+{
+  // Build book object that will be stored in the list
+  BOOK book;
+  book.book_id = 1;
+  strcpy(book.title, "The C++ Programming Language");
+  strcpy(book.author, "Bjarne Stroustrup");
+  strcpy(book.subject, "Programming Languages");
+
+  dynarray<BOOK> arr(1);
+  arr.set_element(0, book);
+
+  // Verify if data was stored correctly
+  BOOK book2 = arr.get_element(0);
+  EXPECT_EQ(book.book_id, book2.book_id);
+  EXPECT_EQ(strcmp(book.title, book2.title), 0);
+  EXPECT_EQ(strcmp(book.author, book2.author), 0);
+  EXPECT_EQ(strcmp(book.subject, book2.subject), 0);
 }
 
 // ======================
@@ -91,13 +116,22 @@ TEST(CInterface, AbstractDataTypes)
   // Build book object that will be stored in the list
   BOOK book;
   book.book_id = 1;
-  strncpy(book.title, "Algorithms", 10);
-  strncpy(book.author, "Robert Sedgewick", 16);
-  strncpy(book.subject, "Computer Programming Structured Design", 38);
+  strcpy(book.title, "Algorithms");
+  strcpy(book.author, "Robert Sedgewick");
+  strcpy(book.subject, "Computer Programming Structured Design");
 
   // Initialize the dynamic array to store one book
   DYNARRAY_HANDLE handle = init_array(1, sizeof(BOOK));
-  set_element(handle, 0, &book);
+  EXPECT_EQ(set_element(handle, 0, &book), true);
+
+  BOOK book2;
+  EXPECT_EQ(get_element(handle, 0, &book2), true);
+
+  EXPECT_EQ(book.book_id, book2.book_id);
+  EXPECT_EQ(strcmp(book.title, book2.title), 0);
+  EXPECT_EQ(strcmp(book.author, book2.author), 0);
+  EXPECT_EQ(strcmp(book.subject, book2.subject), 0);
+
   free_array(handle);
   //EXPECT_EQ(sizeof(BOOK), 204);
 }
