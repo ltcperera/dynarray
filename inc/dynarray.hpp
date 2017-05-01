@@ -144,7 +144,7 @@ template <class T>
 bool dynarray<T>::set_element(unsigned int index, T element)
 {
   bool retval = false;
-  if (mp_array && index >= 0 && index < m_capacity) {
+  if (mp_array && index < m_capacity) {
     // Store the element at the index
     mp_array[index] = element;
     retval = true;
