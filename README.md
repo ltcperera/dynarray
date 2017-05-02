@@ -1,14 +1,14 @@
 ## Dynamic Array Implementation
 
-This is an implementation of a dynamic array that allows elements to be added and removed as needed. It resizes to grow automatically as new elements are added. The array can be allocated with an initial capacity. When the capacity is reached, the size of the backing array is doubled to accommodate new elements. Elements can be added or removed at the beginning, end or by index as required.
+This is an implementation of a dynamic array that allows elements to be added and removed as needed. It resizes to grow automatically as new elements are added. The array can be allocated with an initial capacity. When the capacity is reached, the size of the backing array is increased to accommodate new elements. Elements can be added or removed at the beginning, end or by index as required.
 
 This library has both C and C++ interfaces for use.
 
 ### Operations
 
 - Create a dynamic array of specified size
-- Add element at specified index
-- Add element at the beginning/end
+- Insert element at specified index
+- Insert element at the beginning/end
 - Delete element at specified index
 - Delete element at beginning/end
 - Get the number of elements in the array
@@ -17,6 +17,7 @@ This library has both C and C++ interfaces for use.
 - Returns the index of a specified item
 - Returns whether or not the array is empty
 - Trim array down to size
+- Reserve space within the array
 
 ### Building
 

@@ -51,6 +51,18 @@ void swap(T &first, T &second)
   second = temp;
 }
 
+/// Function that copies the specified range of elements from the source array to the destination array
+///
+/// @param[in,out] dest_array The destination array to which elements will be copied to
+/// @param[in] src_array The source array to which elements will be copied from
+/// @param[in] from_index The starting index for the copy
+/// @param[in] to_index The ending index for the copy
+template <class T>
+bool copy_array_range(T &dest_array, const T &src_array, unsigned int from_index, unsigned int to_index)
+{
+  return false;
+}
+
 /// Resize the array by the specified size.
 ///
 /// The function creates a new array of the specified size and copies the
@@ -162,17 +174,18 @@ template <class T>
 bool dynarray<T>::insert_element(unsigned int index, T element)
 {
   bool retval = true; // Assume successful
-  // if index >= m_capacity, resize the array
-  if (index >= m_capacity) {
-    // The new capacity ranges from 1 to 2 * index
-    int newsize = (m_capacity == 0) ? 1 : index * 2;
+  // The index needs to be valid within the range of the current array
+  if (index < m_capacity) {
+    // Allocate space for the new element
+    int newsize = m_capacity + 1;
     retval = resize_array(newsize);
+
+    if (retval == true) {
+      // Store the element in the specified location
+  	  mp_array[index] = element;
+    }
   }
 
-  if (retval == true) {
-    // Store the element in the specified location
-	  mp_array[index] = element;
-  }
 
 	return retval;
 }

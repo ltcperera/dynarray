@@ -113,8 +113,61 @@ Functions</h2></td></tr>
 <tr class="memitem:a23d2ffe09a796236ada01d783a46c5fc"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a23d2ffe09a796236ada01d783a46c5fc"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="dynarray_8hpp.html#a23d2ffe09a796236ada01d783a46c5fc">swap</a> (T &amp;first, T &amp;second)</td></tr>
 <tr class="separator:a23d2ffe09a796236ada01d783a46c5fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1b7201d0311facc0dab0f69cd708565"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ad1b7201d0311facc0dab0f69cd708565"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="dynarray_8hpp.html#ad1b7201d0311facc0dab0f69cd708565">copy_array_range</a> (T &amp;dest_array, const T &amp;src_array, unsigned int from_index, unsigned int to_index)</td></tr>
+<tr class="separator:ad1b7201d0311facc0dab0f69cd708565"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ad1b7201d0311facc0dab0f69cd708565"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool copy_array_range </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&#160;</td>
+          <td class="paramname"><em>dest_array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>src_array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>from_index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>to_index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function that copies the specified range of elements from the source array to the destination array</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">dest_array</td><td>The destination array to which elements will be copied to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src_array</td><td>The source array to which elements will be copied from </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">from_index</td><td>The starting index for the copy </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to_index</td><td>The ending index for the copy </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a23d2ffe09a796236ada01d783a46c5fc"></a>
 <div class="memitem">
 <div class="memproto">
