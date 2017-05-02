@@ -181,8 +181,9 @@ bool dynarray<T>::insert_element(unsigned int index, T element)
   // If inserting new element at the begining, index is 0.
   // If inserting new element at the end, index = capacity.
   if (index <= m_capacity) {
-    // Allocate array large enough to hold new element
-    T *new_array = new T[m_capacity + 1];
+    // Allocate array large enough to hold new element.
+    // Initialize each element to 0.
+    T *new_array = new T[m_capacity + 1]{};
 
     if (new_array) {
       // Store the new element at the index

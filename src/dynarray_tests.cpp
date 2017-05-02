@@ -124,7 +124,6 @@ TEST(CPPInterface, InsertOperations)
   EXPECT_EQ(arr.get_element(5), 4);
   EXPECT_EQ(arr.get_element(6), 5);
   EXPECT_EQ(arr.get_element(7), 0xfc);
-
 }
 
 /// Tests insertion of values of abstract data types
