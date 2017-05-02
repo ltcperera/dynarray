@@ -62,7 +62,7 @@ TEST(CPPInterface, ConstructionSpesifiedLength)
 }
 
 /// Tests insertion of elements with resize operation
-TEST(CPPInterface, ResizeOperationInsertAtBeginning)
+TEST(CPPInterface, ResizeOperationInsertFirst)
 {
   dynarray<int> arr;
 
@@ -71,6 +71,60 @@ TEST(CPPInterface, ResizeOperationInsertAtBeginning)
 
   // Expect the array to resize by 1
   EXPECT_EQ(arr.array_capacity(), 1);
+}
+
+/// Tests insertion of elements at beginning, middle and end
+TEST(CPPInterface, SetGetOperations)
+{
+  // Allocate array for 5 elements (indexed 0 - 4)
+  dynarray<int> arr(5);
+
+  // Verify set operations
+  EXPECT_EQ(arr.set_element(0, 1), true);
+  EXPECT_EQ(arr.set_element(1, 2), true);
+  EXPECT_EQ(arr.set_element(2, 3), true);
+  EXPECT_EQ(arr.set_element(3, 4), true);
+  EXPECT_EQ(arr.set_element(4, 5), true);
+
+  // Verify get operations
+  EXPECT_EQ(arr.get_element(0), 1);
+  EXPECT_EQ(arr.get_element(1), 2);
+  EXPECT_EQ(arr.get_element(2), 3);
+  EXPECT_EQ(arr.get_element(3), 4);
+  EXPECT_EQ(arr.get_element(4), 5);
+}
+
+/// Tests insertion of elements at beginning, middle and end
+TEST(CPPInterface, InsertOperations)
+{
+  // Allocate array for 5 elements (indexed 0 - 4)
+  dynarray<int> arr(5);
+
+  // Setup by storing elements
+  arr.set_element(0, 1);
+  arr.set_element(1, 2);
+  arr.set_element(2, 3);
+  arr.set_element(3, 4);
+  arr.set_element(4, 5);
+
+  // Verify insert operations
+  EXPECT_EQ(arr.insert_element(0, 0xfa), true); // Insert 0xfa at index 0
+  EXPECT_EQ(arr.insert_element(3, 0xfb), true); // Insert 0xfb at index 3
+  EXPECT_EQ(arr.insert_element(7, 0xfc), true); // Insert 0xfc at the end
+
+  // Verify length of dynamic array after insert operations
+  EXPECT_EQ(arr.array_capacity(), 8);
+
+  // Read back all values and verify
+  EXPECT_EQ(arr.get_element(0), 0xfa);
+  EXPECT_EQ(arr.get_element(1), 1);
+  EXPECT_EQ(arr.get_element(2), 2);
+  EXPECT_EQ(arr.get_element(3), 0xfb);
+  EXPECT_EQ(arr.get_element(4), 3);
+  EXPECT_EQ(arr.get_element(5), 4);
+  EXPECT_EQ(arr.get_element(6), 5);
+  EXPECT_EQ(arr.get_element(7), 0xfc);
+
 }
 
 /// Tests insertion of values of abstract data types

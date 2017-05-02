@@ -168,24 +168,46 @@ bool dynarray<T>::set_element(unsigned int index, T element)
 /// Insert the specified element at the specified index.
 ///
 /// @param[in] index A zero-based index ranging from from 0 to the size
-///                  of the array - 1.
+///                  of the array. If the index is equal to the size of the
+///                  dynamic array, the element is added to the end of the
+///                  dynamic array.
 /// @param[in] element The item to be inserted into the dynamic array.
 template <class T>
 bool dynarray<T>::insert_element(unsigned int index, T element)
 {
-  bool retval = true; // Assume successful
-  // The index needs to be valid within the range of the current array
-  if (index < m_capacity) {
-    // Allocate space for the new element
-    int newsize = m_capacity + 1;
-    retval = resize_array(newsize);
+  bool retval = false;
 
-    if (retval == true) {
-      // Store the element in the specified location
-  	  mp_array[index] = element;
+  // The index needs to be between 0 and the capacity (inclusive)
+  // If inserting new element at the begining, index is 0.
+  // If inserting new element at the end, index = capacity.
+  if (index <= m_capacity) {
+    // Allocate array large enough to hold new element
+    T *new_array = new T[m_capacity + 1];
+
+    if (new_array) {
+      // Store the new element at the index
+      new_array[index] = element;
+
+      // Copy the rest of the items to the new_array
+      for (int i = 0, j = 0; i < m_capacity; ++i, ++j) {
+        if (i == index) {
+          // Skip the index for the new element that was already stored
+          ++j;
+        }
+        new_array[j] = mp_array[i];
+      }
+
+      // Deallocate old array
+      delete[] mp_array;
+
+      // Assign new array
+      mp_array = new_array;
+
+      // Update the capacity of the array
+      m_capacity += 1;
+      retval = true;
     }
   }
-
 
 	return retval;
 }
