@@ -19,24 +19,25 @@
 // SOFTWARE.
 
 #pragma once
+#include <cstdlib>
 
 /// The dynarray class manages an automatically re-sizing collection of elements.
 template <class T>
 class dynarray
 {
 public:
-  dynarray(unsigned int size = 0);
+  dynarray(size_t size = 0);
   ~dynarray();
-  T get_element(unsigned int index);
-  bool set_element(unsigned int index, T element);
-  bool insert_element(unsigned int index, T element);
-  bool delete_element(unsigned int index);
-  unsigned int array_capacity();
+  T get_element(size_t index);
+  bool set_element(size_t index, T element);
+  bool insert_element(size_t index, T element);
+  bool delete_element(size_t index);
+  size_t array_capacity();
   bool is_empty();
 private:
-  bool resize_array(int newsize);
+  bool resize_array(size_t newsize);
   T *mp_array;
-  unsigned int m_capacity;	  // Size allocated for the array
+  size_t m_capacity;	  // Size allocated for the array
 };
 
 /// Function Swaps the values of the first and second arguments passed
@@ -58,7 +59,7 @@ void swap(T &first, T &second)
 /// @param[in] from_index The starting index for the copy
 /// @param[in] to_index The ending index for the copy
 template <class T>
-bool copy_array_range(T &dest_array, const T &src_array, unsigned int from_index, unsigned int to_index)
+bool copy_array_range(T &dest_array, const T &src_array, size_t from_index, size_t to_index)
 {
   return false;
 }
@@ -74,7 +75,7 @@ bool copy_array_range(T &dest_array, const T &src_array, unsigned int from_index
 /// @param[in] newsize the size of the reallocated array
 /// @return    true if successful, false otherwise
 template <class T>
-bool dynarray<T>::resize_array(int newsize)
+bool dynarray<T>::resize_array(size_t newsize)
 {
   bool retval = false;
 
@@ -107,7 +108,7 @@ bool dynarray<T>::resize_array(int newsize)
 ///                 By default a 0 size array is created if no arguments
 ///                 are specified.
 template <class T>
-dynarray<T>::dynarray(unsigned int size)
+dynarray<T>::dynarray(size_t size)
 {
   // Initialize array elements to 0s. Ensure that allocation
   //  does not throw an exception, but rather returns a NULL on failure.
@@ -133,7 +134,7 @@ dynarray<T>::~dynarray()
 /// @param[in] index A zero-based index ranging from from 0 to the size
 //                   of the array - 1.
 template <class T>
-T dynarray<T>::get_element(unsigned int index)
+T dynarray<T>::get_element(size_t index)
 {
 	T retVal;
 	if (mp_array && index < m_capacity) {
@@ -153,7 +154,7 @@ T dynarray<T>::get_element(unsigned int index)
 /// @param[in] element The element to be stored at the specified index
 /// @return true if successful, false otherwise
 template <class T>
-bool dynarray<T>::set_element(unsigned int index, T element)
+bool dynarray<T>::set_element(size_t index, T element)
 {
   bool retval = false;
   if (mp_array && index < m_capacity) {
@@ -173,7 +174,7 @@ bool dynarray<T>::set_element(unsigned int index, T element)
 ///                  dynamic array.
 /// @param[in] element The item to be inserted into the dynamic array.
 template <class T>
-bool dynarray<T>::insert_element(unsigned int index, T element)
+bool dynarray<T>::insert_element(size_t index, T element)
 {
   bool retval = false;
 
@@ -218,7 +219,7 @@ bool dynarray<T>::insert_element(unsigned int index, T element)
 /// @param[in] index A zero-based index ranging from from 0 to the size
 ///                  of the array - 1.
 template <class T>
-bool dynarray<T>::delete_element(unsigned int index)
+bool dynarray<T>::delete_element(size_t index)
 {
   return false;
 }
@@ -226,7 +227,7 @@ bool dynarray<T>::delete_element(unsigned int index)
 /// Returns the capacity of the backing array
 /// @return capacity of backing array
 template <class T>
-unsigned int dynarray<T>::array_capacity()
+size_t dynarray<T>::array_capacity()
 {
   return m_capacity;
 }
