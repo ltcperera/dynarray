@@ -23,6 +23,7 @@
 #include "cdynarray.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 /**
  * Stores tracking information required to manage the array.

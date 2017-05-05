@@ -182,9 +182,9 @@ bool dynarray<T>::insert_element(size_t index, T element)
   // If inserting new element at the begining, index is 0.
   // If inserting new element at the end, index = capacity.
   if (index <= m_capacity) {
-    // Allocate array large enough to hold new element.
-    // Initialize each element to 0.
-    T *new_array = new T[m_capacity + 1]{};
+    // Resize the backing array to 1 if 0 or by 2x and initialize each element to 0.
+    size_t new_capacity = m_capacity == 0 ? 1 : 2 * m_capacity;
+    T *new_array = new T[new_capacity]{};
 
     if (new_array) {
       // Store the new element at the index
@@ -206,7 +206,7 @@ bool dynarray<T>::insert_element(size_t index, T element)
       mp_array = new_array;
 
       // Update the capacity of the array
-      m_capacity += 1;
+      m_capacity = new_capacity;
       retval = true;
     }
   }

@@ -109,11 +109,11 @@ TEST(CPPInterface, InsertOperations)
 
   // Verify insert operations
   EXPECT_EQ(arr.insert_element(0, 0xfa), true); // Insert 0xfa at index 0
+  EXPECT_EQ(arr.array_capacity(), 10); // Capacity should have doubled from 5 to 10
   EXPECT_EQ(arr.insert_element(3, 0xfb), true); // Insert 0xfb at index 3
+  EXPECT_EQ(arr.array_capacity(), 20); // Capacity should have doubled from 10 to 20
   EXPECT_EQ(arr.insert_element(7, 0xfc), true); // Insert 0xfc at the end
-
-  // Verify length of dynamic array after insert operations
-  EXPECT_EQ(arr.array_capacity(), 8);
+  EXPECT_EQ(arr.array_capacity(), 40); // Capacity should have doubled from 20 to 40
 
   // Read back all values and verify
   EXPECT_EQ(arr.get_element(0), 0xfa);
