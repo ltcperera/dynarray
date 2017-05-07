@@ -20,6 +20,7 @@
 #include "gtest/gtest.h"
 #include "dynarray.hpp"
 #include <iostream>
+#include <string>
 using namespace std;
 
 // Prevent C++ compiler from mangling C names
@@ -148,6 +149,44 @@ TEST(CPPInterface, InsertOperations)
   EXPECT_EQ(arr.get_element(5), 4);
   EXPECT_EQ(arr.get_element(6), 5);
   EXPECT_EQ(arr.get_element(7), 0xfc);
+}
+
+/// Tests insertion of elements at beginning, middle and end (string type)
+TEST(CPPInterface, InsertOperationsString)
+{
+  // Allocate array for 5 elements (indexed 0 - 4)
+  dynarray<string> arr(5);
+
+  // Setup by storing elements
+  arr.set_element(0, "one");
+  arr.set_element(1, "two");
+  arr.set_element(2, "three");
+  arr.set_element(3, "four");
+  arr.set_element(4, "five");
+
+  // Verify insert operations
+  EXPECT_EQ(arr.insert_element(0, "two hundred and fifty"), true); // Insert 0xfa at index 0
+  EXPECT_EQ(arr.array_size(), 6); // Size should have increased by one
+
+  // Capacity should have doubled from 5 to 10 since logical size would = capacity
+  EXPECT_EQ(arr.array_capacity(), 10);
+
+  EXPECT_EQ(arr.insert_element(3, "two hundred and fifty one"), true); // Insert 0xfb at index 3
+  EXPECT_EQ(arr.array_size(), 7); // Size should have increased by one
+  EXPECT_EQ(arr.array_capacity(), 10); // No change in capacity
+  EXPECT_EQ(arr.insert_element(7, "two hundred and fifty two"), true); // Insert 0xfc at the end
+  EXPECT_EQ(arr.array_size(), 8); // Size should have increased by one
+  EXPECT_EQ(arr.array_capacity(), 10); // No change in capacity
+
+  // Read back all values and verify
+  EXPECT_EQ(arr.get_element(0), "two hundred and fifty");
+  EXPECT_EQ(arr.get_element(1), "one");
+  EXPECT_EQ(arr.get_element(2), "two");
+  EXPECT_EQ(arr.get_element(3), "two hundred and fifty one");
+  EXPECT_EQ(arr.get_element(4), "three");
+  EXPECT_EQ(arr.get_element(5), "four");
+  EXPECT_EQ(arr.get_element(6), "five");
+  EXPECT_EQ(arr.get_element(7), "two hundred and fifty two");
 }
 
 /// Tests insertion of values of abstract data types
