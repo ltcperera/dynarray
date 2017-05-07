@@ -33,11 +33,14 @@ public:
   bool insert_element(size_t index, T element);
   bool delete_element(size_t index);
   size_t array_capacity();
+  size_t array_size();
   bool is_empty();
 private:
   bool resize_array(size_t newsize);
-  T *mp_array;
-  size_t m_capacity;	  // Size allocated for the array
+  T *mp_array;          // The backing array that stores the data
+  size_t m_capacity;	  // Capacity of the backing array
+  size_t m_size;        // The logical size of the dynamic array
+                        // The logical size changes when elements are inserted/deleted
 };
 
 /// Function Swaps the values of the first and second arguments passed
@@ -114,10 +117,12 @@ dynarray<T>::dynarray(size_t size)
   //  does not throw an exception, but rather returns a NULL on failure.
   mp_array = new (std::nothrow) T[size]{};
   m_capacity = 0;
+  m_size = 0;
 
   // Set the size if the allocation was successful
   if (mp_array) {
-      m_capacity = size;
+    m_capacity = size;
+    m_size = size;
   }
 }
 
@@ -137,7 +142,7 @@ template <class T>
 T dynarray<T>::get_element(size_t index)
 {
 	T retVal;
-	if (mp_array && index < m_capacity) {
+	if (mp_array && index < m_size) {
 		retVal = mp_array[index];
 	}
 
@@ -157,7 +162,7 @@ template <class T>
 bool dynarray<T>::set_element(size_t index, T element)
 {
   bool retval = false;
-  if (mp_array && index < m_capacity) {
+  if (mp_array && index < m_size) {
     // Store the element at the index
     mp_array[index] = element;
     retval = true;
@@ -176,42 +181,52 @@ bool dynarray<T>::set_element(size_t index, T element)
 template <class T>
 bool dynarray<T>::insert_element(size_t index, T element)
 {
-  bool retval = false;
+  // Note: Index can be 0 if inserting new lements at the beginning
+  // Note: Index can be == m_size if inserting elements at the end
+  if (index <= m_size) {
+    // Index is valid
+    if (m_size == m_capacity) {
+      // The logical size of the backing array has reached its capacity.
+      // Resize the backing array to 2x its current capacity
+      // (or 1 if its current capacity is 0) and copy the old contents to the
+      // new array.
+      size_t new_capacity = (m_capacity == 0) ? 1 :2 * m_capacity;
+      T *new_array = new T[new_capacity]{};
 
-  // The index needs to be between 0 and the capacity (inclusive)
-  // If inserting new element at the begining, index is 0.
-  // If inserting new element at the end, index = capacity.
-  if (index <= m_capacity) {
-    // Resize the backing array to 1 if 0 or by 2x and initialize each element to 0.
-    size_t new_capacity = m_capacity == 0 ? 1 : 2 * m_capacity;
-    T *new_array = new T[new_capacity]{};
-
-    if (new_array) {
-      // Store the new element at the index
-      new_array[index] = element;
+      // Allocation of new array failed. Return failure code
+      if (new_array == NULL) {
+        return false;
+      }
 
       // Copy the rest of the items to the new_array
-      for (int i = 0, j = 0; i < m_capacity; ++i, ++j) {
+      for (size_t i = 0, j = 0; i < m_capacity; ++i, ++j) {
         if (i == index) {
-          // Skip the index for the new element that was already stored
+          // Skip the index for the new element. The new element will be copied to this location.
           ++j;
         }
         new_array[j] = mp_array[i];
       }
 
-      // Deallocate old array
-      delete[] mp_array;
+      delete[] mp_array;         // Deallocate old array
+      mp_array = new_array;      // Assign new array
 
-      // Assign new array
-      mp_array = new_array;
+      mp_array[index] = element; // Store the new element at the index
+      m_size += 1;               // Increment the logical size
 
-      // Update the capacity of the array
-      m_capacity = new_capacity;
-      retval = true;
+      m_capacity = new_capacity; // Update the capacity of the backing array
+    }
+    else {
+      T temp = element; // Store the element in the temporary storage
+      m_size += 1;      // Increment the size by 1
+
+      // Move each element to the right
+      for (size_t i = index; i < m_size; ++i) {
+        swap(mp_array[i], temp);
+      }
     }
   }
 
-	return retval;
+	return true;
 }
 
 /// Delete the element at the specified index.
@@ -230,6 +245,14 @@ template <class T>
 size_t dynarray<T>::array_capacity()
 {
   return m_capacity;
+}
+
+/// Returns the logical size of the backing array
+/// @return logical size of the backing array
+template <class T>
+size_t dynarray<T>::array_size()
+{
+  return m_size;
 }
 
 /// Returns whether or not the array is empty
