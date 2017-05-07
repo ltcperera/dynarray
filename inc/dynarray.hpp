@@ -260,5 +260,5 @@ size_t dynarray<T>::array_size()
 template <class T>
 bool dynarray<T>::is_empty()
 {
-  return (m_capacity == 0);
+  return (m_size == 0);
 }
