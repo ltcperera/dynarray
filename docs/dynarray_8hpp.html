@@ -85,13 +85,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
 <div class="title">dynarray.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><div class="dynheader">
+<div class="textblock"><code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for dynarray.hpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="dynarray_8hpp__incl.png" border="0" usemap="#inc_2dynarray_8hpp" alt=""/></div>
+<map name="inc_2dynarray_8hpp" id="inc_2dynarray_8hpp">
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="dynarray_8hpp__dep__incl.png" border="0" usemap="#inc_2dynarray_8hppdep" alt=""/></div>
@@ -107,103 +115,7 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdynarray.html">dynarray&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dynarray class manages an automatically re-sizing collection of elements.  <a href="classdynarray.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a23d2ffe09a796236ada01d783a46c5fc"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:a23d2ffe09a796236ada01d783a46c5fc"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="dynarray_8hpp.html#a23d2ffe09a796236ada01d783a46c5fc">swap</a> (T &amp;first, T &amp;second)</td></tr>
-<tr class="separator:a23d2ffe09a796236ada01d783a46c5fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1b7201d0311facc0dab0f69cd708565"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:ad1b7201d0311facc0dab0f69cd708565"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="dynarray_8hpp.html#ad1b7201d0311facc0dab0f69cd708565">copy_array_range</a> (T &amp;dest_array, const T &amp;src_array, unsigned int from_index, unsigned int to_index)</td></tr>
-<tr class="separator:ad1b7201d0311facc0dab0f69cd708565"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ad1b7201d0311facc0dab0f69cd708565"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">bool copy_array_range </td>
-          <td>(</td>
-          <td class="paramtype">T &amp;&#160;</td>
-          <td class="paramname"><em>dest_array</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const T &amp;&#160;</td>
-          <td class="paramname"><em>src_array</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>from_index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>to_index</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function that copies the specified range of elements from the source array to the destination array</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">dest_array</td><td>The destination array to which elements will be copied to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">src_array</td><td>The source array to which elements will be copied from </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">from_index</td><td>The starting index for the copy </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">to_index</td><td>The ending index for the copy </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a23d2ffe09a796236ada01d783a46c5fc"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void swap </td>
-          <td>(</td>
-          <td class="paramtype">T &amp;&#160;</td>
-          <td class="paramname"><em>first</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">T &amp;&#160;</td>
-          <td class="paramname"><em>second</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function Swaps the values of the first and second arguments passed</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">first</td><td>reference to first item to swap </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">second</td><td>reference to second item to swap </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

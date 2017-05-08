@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main',['main',['../main_8cpp.html#a7f83bdc516d2cb86e20235d94ddf055a',1,'main.cpp']]]
+  ['resize_5farray',['resize_array',['../classdynarray.html#a98cf3df4b9e8d6315eb3ea6a0e634e82',1,'dynarray']]]
 ];

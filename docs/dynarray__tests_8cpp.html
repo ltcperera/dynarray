@@ -93,6 +93,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><code>#include &quot;gtest/gtest.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="dynarray_8hpp_source.html">dynarray.hpp</a>&quot;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
 <code>#include &quot;<a class="el" href="cdynarray_8h_source.html">cdynarray.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for dynarray_tests.cpp:</div>
@@ -100,7 +102,7 @@ Include dependency graph for dynarray_tests.cpp:</div>
 <div class="center"><img src="dynarray__tests_8cpp__incl.png" border="0" usemap="#src_2dynarray__tests_8cpp" alt=""/></div>
 <map name="src_2dynarray__tests_8cpp" id="src_2dynarray__tests_8cpp">
 <area shape="rect" id="node3" href="dynarray_8hpp.html" title="dynarray.hpp" alt="" coords="124,80,221,107"/>
-<area shape="rect" id="node4" href="cdynarray_8h.html" title="cdynarray.h" alt="" coords="246,80,337,107"/>
+<area shape="rect" id="node8" href="cdynarray_8h.html" title="cdynarray.h" alt="" coords="422,80,513,107"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -112,8 +114,6 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a681f23ad5cc849a91a1e7ed4c1731202"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynarray__tests_8cpp.html#a681f23ad5cc849a91a1e7ed4c1731202">TEST</a> (Utility, <a class="el" href="dynarray_8hpp.html#a23d2ffe09a796236ada01d783a46c5fc">swap</a>)</td></tr>
-<tr class="separator:a681f23ad5cc849a91a1e7ed4c1731202"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab597140f5e5bf31664d98b74c14ff6cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynarray__tests_8cpp.html#ab597140f5e5bf31664d98b74c14ff6cc">TEST</a> (CPPInterface, ConstructionZeroLength)</td></tr>
 <tr class="memdesc:ab597140f5e5bf31664d98b74c14ff6cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests default constructor that constructs a 0 length array.  <a href="#ab597140f5e5bf31664d98b74c14ff6cc">More...</a><br /></td></tr>
 <tr class="separator:ab597140f5e5bf31664d98b74c14ff6cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,9 +129,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a0f2172ea4b14958924bd1f78fc60290a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynarray__tests_8cpp.html#a0f2172ea4b14958924bd1f78fc60290a">TEST</a> (CPPInterface, InsertOperations)</td></tr>
 <tr class="memdesc:a0f2172ea4b14958924bd1f78fc60290a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests insertion of elements at beginning, middle and end.  <a href="#a0f2172ea4b14958924bd1f78fc60290a">More...</a><br /></td></tr>
 <tr class="separator:a0f2172ea4b14958924bd1f78fc60290a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80aea5d05bc7acf4b17258ac58c7e359"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynarray__tests_8cpp.html#a80aea5d05bc7acf4b17258ac58c7e359">TEST</a> (CPPInterface, InsertOperationsString)</td></tr>
+<tr class="memdesc:a80aea5d05bc7acf4b17258ac58c7e359"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests insertion of elements at beginning, middle and end (string type)  <a href="#a80aea5d05bc7acf4b17258ac58c7e359">More...</a><br /></td></tr>
+<tr class="separator:a80aea5d05bc7acf4b17258ac58c7e359"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7eb8a32b0d7f2ed0b56d70d42248f60"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynarray__tests_8cpp.html#ad7eb8a32b0d7f2ed0b56d70d42248f60">TEST</a> (CPPInterface, InsertADTValues)</td></tr>
 <tr class="memdesc:ad7eb8a32b0d7f2ed0b56d70d42248f60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests insertion of values of abstract data types.  <a href="#ad7eb8a32b0d7f2ed0b56d70d42248f60">More...</a><br /></td></tr>
 <tr class="separator:ad7eb8a32b0d7f2ed0b56d70d42248f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a160ba92a5d09b76837a26c49e2dcd41a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynarray__tests_8cpp.html#a160ba92a5d09b76837a26c49e2dcd41a">TEST</a> (CPPInterface, DeleteElements)</td></tr>
+<tr class="memdesc:a160ba92a5d09b76837a26c49e2dcd41a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests the deletion of elements at the beginning, middle and end.  <a href="#a160ba92a5d09b76837a26c49e2dcd41a">More...</a><br /></td></tr>
+<tr class="separator:a160ba92a5d09b76837a26c49e2dcd41a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c22fae014b365bd57c76d5e53dfa0aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynarray__tests_8cpp.html#a8c22fae014b365bd57c76d5e53dfa0aa">TEST</a> (CInterface, Construction)</td></tr>
 <tr class="separator:a8c22fae014b365bd57c76d5e53dfa0aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b13acb9200cebc7038353e950e76353"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynarray__tests_8cpp.html#a7b13acb9200cebc7038353e950e76353">TEST</a> (CInterface, AbstractDataTypes)</td></tr>
@@ -139,33 +145,6 @@ Functions</h2></td></tr>
 <tr class="separator:a7b13acb9200cebc7038353e950e76353"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a681f23ad5cc849a91a1e7ed4c1731202"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">TEST </td>
-          <td>(</td>
-          <td class="paramtype">Utility&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="dynarray_8hpp.html#a23d2ffe09a796236ada01d783a46c5fc">swap</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Tests swap function by passing two variables and testing if their values were swapped. </p>
-
-</div>
-</div>
 <a class="anchor" id="ab597140f5e5bf31664d98b74c14ff6cc"></a>
 <div class="memitem">
 <div class="memproto">
@@ -306,6 +285,34 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a80aea5d05bc7acf4b17258ac58c7e359"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">CPPInterface&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InsertOperationsString&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests insertion of elements at beginning, middle and end (string type) </p>
+
+</div>
+</div>
 <a class="anchor" id="ad7eb8a32b0d7f2ed0b56d70d42248f60"></a>
 <div class="memitem">
 <div class="memproto">
@@ -331,6 +338,34 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Tests insertion of values of abstract data types. </p>
+
+</div>
+</div>
+<a class="anchor" id="a160ba92a5d09b76837a26c49e2dcd41a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">CPPInterface&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DeleteElements&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests the deletion of elements at the beginning, middle and end. </p>
 
 </div>
 </div>
