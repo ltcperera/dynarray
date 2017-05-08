@@ -120,6 +120,8 @@ bool dynarray<T>::set_element(size_t index, T element)
 template <class T>
 bool dynarray<T>::insert_element(size_t index, T element)
 {
+  bool retval = false;
+  
   // Note: Index can be 0 if inserting new lements at the beginning
   // Note: Index can be == m_size if inserting elements at the end
   if (index <= m_size) {
@@ -163,9 +165,10 @@ bool dynarray<T>::insert_element(size_t index, T element)
         std::swap(mp_array[i], temp);
       }
     }
+    retval = true;
   }
 
-	return true;
+	return retval;
 }
 
 /// Delete the element at the specified index.
