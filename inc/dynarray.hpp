@@ -121,7 +121,7 @@ template <class T>
 bool dynarray<T>::insert_element(size_t index, T element)
 {
   bool retval = false;
-  
+
   // Note: Index can be 0 if inserting new lements at the beginning
   // Note: Index can be == m_size if inserting elements at the end
   if (index <= m_size) {
@@ -180,8 +180,8 @@ bool dynarray<T>::delete_element(size_t index)
 {
   bool retval = false;
 
-  // Ensure that size and index is within range
-  if (m_size > 0 && index < m_size) {
+  // Ensure that the array is valid and the size and index are within range
+  if (mp_array && m_size > 0 && index < m_size) {
     mp_array[index] = {0};  // Clear existing element
     m_size -= 1;            // Decrement the size of the backing array by 1
 
