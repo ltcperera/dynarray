@@ -210,6 +210,36 @@ TEST(CPPInterface, InsertADTValues)
   EXPECT_EQ(strcmp(book.subject, book2.subject), 0);
 }
 
+/// Tests the deletion of elements at the beginning, middle and end
+TEST(CPPInterface, DeleteElements)
+{
+  // Allocate the array
+  dynarray<int> arr(7);
+
+  arr.set_element(0, 1);
+  arr.set_element(1, 2);
+  arr.set_element(2, 3);
+  arr.set_element(3, 4);
+  arr.set_element(4, 5);
+  arr.set_element(5, 6);
+  arr.set_element(6, 7);
+
+  // Delete elements
+  EXPECT_EQ(arr.delete_element(0), true);
+  EXPECT_EQ(arr.delete_element(3), true);
+  EXPECT_EQ(arr.delete_element(4), true);
+
+  // Verify existing elements
+  EXPECT_EQ(arr.get_element(0), 2);
+  EXPECT_EQ(arr.get_element(1), 3);
+  EXPECT_EQ(arr.get_element(2), 4);
+  EXPECT_EQ(arr.get_element(3), 6);
+
+  // Verify the array size
+  EXPECT_EQ(arr.array_size(), 4);
+}
+
+
 // ======================
 // Tests for C-Interfaces
 // ======================

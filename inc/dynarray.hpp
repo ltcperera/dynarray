@@ -236,7 +236,21 @@ bool dynarray<T>::insert_element(size_t index, T element)
 template <class T>
 bool dynarray<T>::delete_element(size_t index)
 {
-  return false;
+  bool retval = false;
+
+  // Ensure that size and index is within range
+  if (m_size > 0 && index < m_size) {
+    mp_array[index] = {0};  // Clear existing element
+    m_size -= 1;            // Decrement the size of the backing array by 1
+
+    // Sift all elements past the deleted element to the left
+    for (size_t i = index; i < m_size; ++i) {
+      swap(mp_array[i], mp_array[i + 1]);
+    }
+
+    retval = true;
+  }
+  return retval;
 }
 
 /// Returns the capacity of the backing array
