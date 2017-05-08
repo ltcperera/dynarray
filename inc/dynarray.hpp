@@ -44,56 +44,6 @@ private:
                         // The logical size changes when elements are inserted/deleted
 };
 
-/// Function that copies the specified range of elements from the source array to the destination array
-///
-/// @param[in,out] dest_array The destination array to which elements will be copied to
-/// @param[in] src_array The source array to which elements will be copied from
-/// @param[in] from_index The starting index for the copy
-/// @param[in] to_index The ending index for the copy
-template <class T>
-bool copy_array_range(T &dest_array, const T &src_array, size_t from_index, size_t to_index)
-{
-  return false;
-}
-
-/// Resize the array by the specified size.
-///
-/// The function creates a new array of the specified size and copies the
-/// contents from the old array to the new array. The old array is deallocated.
-/// The function also updates the size of the dynamic array to the new size.
-/// The newsize needs to be larger than the currently allocated size of the
-/// array.
-///
-/// @param[in] newsize the size of the reallocated array
-/// @return    true if successful, false otherwise
-template <class T>
-bool dynarray<T>::resize_array(size_t newsize)
-{
-  bool retval = false;
-
-  // Only resize if new size is larger than the currently allocated capacity
-  if (newsize > m_capacity) {
-    // Allocate new array of specified capacity
-    T *p_new_array = new T[newsize]{}; // Initialize the elements to 0s
-    if (p_new_array) {
-      // Copy over elements from old array to new array
-      for (unsigned int i = 0; i < m_capacity; ++i) {
-        p_new_array[i] = mp_array[i];
-      }
-
-      // De-allocate the old array and make it point to the new array
-      delete []mp_array;
-      mp_array = p_new_array;
-
-      // Update the new size of the array
-      m_capacity = newsize;
-      retval = true;
-    }
-  }
-
-  return retval;
-}
-
 /// Constructor with initial size for the dynamic array.
 ///
 /// @param[in] size Amount of space to allocate for the dynamic array.
