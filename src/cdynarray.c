@@ -71,6 +71,7 @@ DYNARRAY_HANDLE init_array(size_t num_elements, size_t element_size)
       /* Allocation of backing array failed. De-allocate metadata structure
            as well since there is no longer a use for the metadata structure. */
       free(p_meta_data);
+      p_meta_data = NULL;
     }
   }
 
@@ -167,7 +168,13 @@ bool get_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
  */
 bool insert_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
 {
-  return false;
+  bool status = false;
+  if (handle) {
+    // Handle is non-zero, get DYNARRAY_METADATA from handle
+    DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA*) handle;
+    
+  }
+  return status;
 }
 
 /**
