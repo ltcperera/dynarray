@@ -39,17 +39,6 @@ typedef struct
   int book_id;
 } BOOK;
 
-/// Tests swap function by passing two variables
-///  and testing if their values were swapped.
-TEST(Utility, swap)
-{
-  int a = 5;
-  int b = 10;
-  //swap(a, b);
-  //EXPECT_EQ(a, 10);
-  //EXPECT_EQ(b, 5);
-}
-
 /// Tests default constructor that constructs a 0 length array
 TEST(CPPInterface, ConstructionZeroLength)
 {
@@ -238,7 +227,6 @@ TEST(CPPInterface, DeleteElements)
   // Verify the array size
   EXPECT_EQ(arr.array_size(), 4);
 }
-
 
 // ======================
 // Tests for C-Interfaces

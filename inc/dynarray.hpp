@@ -20,6 +20,7 @@
 
 #pragma once
 #include <cstdlib>
+#include <utility>
 
 /// The dynarray class manages an automatically re-sizing collection of elements.
 template <class T>
@@ -42,18 +43,6 @@ private:
   size_t m_size;        // The logical size of the dynamic array
                         // The logical size changes when elements are inserted/deleted
 };
-
-/// Function Swaps the values of the first and second arguments passed
-///
-/// @param[in,out] first reference to first item to swap
-/// @param[in,out] second reference to second item to swap
-template <class T>
-void swap(T &first, T &second)
-{
-  T temp = first;
-  first = second;
-  second = temp;
-}
 
 /// Function that copies the specified range of elements from the source array to the destination array
 ///
@@ -221,7 +210,7 @@ bool dynarray<T>::insert_element(size_t index, T element)
 
       // Move each element to the right
       for (size_t i = index; i < m_size; ++i) {
-        swap(mp_array[i], temp);
+        std::swap(mp_array[i], temp);
       }
     }
   }
@@ -245,7 +234,7 @@ bool dynarray<T>::delete_element(size_t index)
 
     // Sift all elements past the deleted element to the left
     for (size_t i = index; i < m_size; ++i) {
-      swap(mp_array[i], mp_array[i + 1]);
+      std::swap(mp_array[i], mp_array[i + 1]);
     }
 
     retval = true;
