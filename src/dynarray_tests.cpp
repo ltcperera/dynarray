@@ -52,6 +52,7 @@ TEST(CPPInterface, ConstructionSpesifiedLength)
 {
   dynarray<int> arr(20);
   EXPECT_EQ(arr.array_capacity(), 20);
+  EXPECT_EQ(arr.array_size(), 20);
 }
 
 /// Tests insertion of elements with resize operation

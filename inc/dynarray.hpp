@@ -22,7 +22,8 @@
 #include <cstdlib>
 #include <utility>
 
-/// The dynarray class manages an automatically re-sizing collection of elements.
+//! \brief       The dynarray class manages an automatically re-sizing
+//!              collection of elements.
 template <class T>
 class dynarray
 {
@@ -44,28 +45,27 @@ private:
                         // The logical size changes when elements are inserted/deleted
 };
 
-/// Constructor with initial size for the dynamic array.
-///
-/// @param[in] size Amount of space to allocate for the dynamic array.
-///                 By default a 0 size array is created if no arguments
-///                 are specified.
+//! \brief    Construct a dynamic array with initial size.
+//!
+//! \param[in] size - Amount of space to allocate for the dynamic array.
+//!            By default a 0 size array is created if no arguments
+//!            are specified.
+//!
+//! \throws    bad-alloc exception if allocation fails
 template <class T>
 dynarray<T>::dynarray(size_t size)
 {
-  // Initialize array elements to 0s. Ensure that allocation
-  //  does not throw an exception, but rather returns a NULL on failure.
-  mp_array = new (std::nothrow) T[size]{};
-  m_capacity = 0;
-  m_size = 0;
+  // Initialize array elements to 0s. The runtime will throw a bad_alloc
+  // exception if the allocation fails. The caller is expected to handle
+  // the exception.
+  mp_array = new T[size]{};
 
-  // Set the size if the allocation was successful
-  if (mp_array) {
-    m_capacity = size;
-    m_size = size;
-  }
+  // bad-alloc exception would have been thrown at this point if allocation failed
+  m_capacity = size;
+  m_size = size;
 }
 
-/// Destructor deallocates memory allocated for the dynamic array
+//! \brief    Deallocates memory allocated for the dynamic array
 template <class T>
 dynarray<T>::~dynarray()
 {
@@ -73,10 +73,10 @@ dynarray<T>::~dynarray()
   mp_array = NULL;
 }
 
-/// Returns the element at the specified index
-///
-/// @param[in] index A zero-based index ranging from from 0 to the size
-//                   of the array - 1.
+//! \brief Returns the element at the specified index
+//!
+//! \param[in] index - A zero-based index ranging from from 0 to the size
+//!            of the array - 1.
 template <class T>
 T dynarray<T>::get_element(size_t index)
 {
@@ -88,15 +88,15 @@ T dynarray<T>::get_element(size_t index)
   return retVal;
 }
 
-/// Sets the element at the specified index.
-///
-/// The index needs to be within the capacity of the array. If not the function
-/// will return a failure code.
-///
-/// @param[in] index A zero-based index ranging from from 0 to the size
-///                  of the array - 1.
-/// @param[in] element The element to be stored at the specified index
-/// @return true if successful, false otherwise
+//! \brief       Sets the element at the specified index.
+//!
+//! \details     The index needs to be within the capacity of the array.
+//!              If not the function will return a failure code.
+//!
+//! \param[in]   index - A zero-based index ranging from from 0 to the size
+//!              of the array - 1.
+//! \param[in]   element - The element to be stored at the specified index
+//! \return      true if successful, false otherwise
 template <class T>
 bool dynarray<T>::set_element(size_t index, T element)
 {
@@ -110,13 +110,16 @@ bool dynarray<T>::set_element(size_t index, T element)
   return retval;
 }
 
-/// Insert the specified element at the specified index.
-///
-/// @param[in] index A zero-based index ranging from from 0 to the size
-///                  of the array. If the index is equal to the size of the
-///                  dynamic array, the element is added to the end of the
-///                  dynamic array.
-/// @param[in] element The item to be inserted into the dynamic array.
+//! \brief        Insert the specified element at the specified index.
+//!
+//! \param[in]    index - A zero-based index ranging from from 0 to the size
+//!               of the array. If the index is equal to the size of the
+//!               dynamic array, the element is added to the end of the
+//!               dynamic array.
+//!
+//! \param[in]    element - The item to be inserted into the dynamic array.
+//!
+//! \throws       bad-alloc exception if allocation fails
 template <class T>
 bool dynarray<T>::insert_element(size_t index, T element)
 {
@@ -171,10 +174,10 @@ bool dynarray<T>::insert_element(size_t index, T element)
 	return retval;
 }
 
-/// Delete the element at the specified index.
-///
-/// @param[in] index A zero-based index ranging from from 0 to the size
-///                  of the array - 1.
+//! \brief     Delete the element at the specified index.
+//!
+//! \param[in] index - A zero-based index ranging from from 0 to the size
+//!            of the array - 1.
 template <class T>
 bool dynarray<T>::delete_element(size_t index)
 {
@@ -195,24 +198,24 @@ bool dynarray<T>::delete_element(size_t index)
   return retval;
 }
 
-/// Returns the capacity of the backing array
-/// @return capacity of backing array
+//! \brief      Returns the capacity of the backing array
+//! \return     capacity of backing array
 template <class T>
 size_t dynarray<T>::array_capacity()
 {
   return m_capacity;
 }
 
-/// Returns the logical size of the backing array
-/// @return logical size of the backing array
+//! \brief      Returns the logical size of the backing array
+//! \return     logical size of the backing array
 template <class T>
 size_t dynarray<T>::array_size()
 {
   return m_size;
 }
 
-/// Returns whether or not the array is empty
-/// @return TRUE - array is empty, FALSE otherwise
+//! \brief      Returns whether or not the array is empty
+//! \return     TRUE - array is empty, FALSE otherwise
 template <class T>
 bool dynarray<T>::is_empty()
 {
