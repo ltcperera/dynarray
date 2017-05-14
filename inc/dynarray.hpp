@@ -51,7 +51,7 @@ private:
 //!            By default a 0 size array is created if no arguments
 //!            are specified.
 //!
-//! \throws    bad-alloc exception if allocation fails
+//! \throws    bad_alloc exception if allocation fails
 template <class T>
 dynarray<T>::dynarray(size_t size)
 {
@@ -60,7 +60,7 @@ dynarray<T>::dynarray(size_t size)
   // the exception.
   mp_array = new T[size]{};
 
-  // bad-alloc exception would have been thrown at this point if allocation failed
+  // bad_alloc exception would have been thrown at this point if allocation failed
   m_capacity = size;
   m_size = size;
 }
@@ -89,10 +89,8 @@ T dynarray<T>::get_element(size_t index)
 }
 
 //! \brief       Sets the element at the specified index.
-//!
 //! \details     The index needs to be within the capacity of the array.
 //!              If not the function will return a failure code.
-//!
 //! \param[in]   index - A zero-based index ranging from from 0 to the size
 //!              of the array - 1.
 //! \param[in]   element - The element to be stored at the specified index
@@ -111,15 +109,12 @@ bool dynarray<T>::set_element(size_t index, T element)
 }
 
 //! \brief        Insert the specified element at the specified index.
-//!
 //! \param[in]    index - A zero-based index ranging from from 0 to the size
 //!               of the array. If the index is equal to the size of the
 //!               dynamic array, the element is added to the end of the
 //!               dynamic array.
-//!
 //! \param[in]    element - The item to be inserted into the dynamic array.
-//!
-//! \throws       bad-alloc exception if allocation fails
+//! \throws       bad_alloc exception if allocation fails
 template <class T>
 bool dynarray<T>::insert_element(size_t index, T element)
 {
