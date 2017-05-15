@@ -132,9 +132,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a96e867e6c275af7ce014c43b038affd5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8c.html#a96e867e6c275af7ce014c43b038affd5">get_element</a> (<a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a> handle, size_t index, void *p_data)</td></tr>
 <tr class="memdesc:a96e867e6c275af7ce014c43b038affd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the element at the specified index.  <a href="#a96e867e6c275af7ce014c43b038affd5">More...</a><br /></td></tr>
 <tr class="separator:a96e867e6c275af7ce014c43b038affd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af57fd03ed2fc1ab1895d2244fb0095de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8c.html#af57fd03ed2fc1ab1895d2244fb0095de">copy_elements</a> (void *p_source_data, size_t source_index, void *p_dest_data, size_t dest_index, size_t data_size, size_t num_elements)</td></tr>
-<tr class="memdesc:af57fd03ed2fc1ab1895d2244fb0095de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy elements from the source array to the destination array.  <a href="#af57fd03ed2fc1ab1895d2244fb0095de">More...</a><br /></td></tr>
-<tr class="separator:af57fd03ed2fc1ab1895d2244fb0095de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a929a1a3db50a04108a24a969354b8a9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8c.html#a929a1a3db50a04108a24a969354b8a9e">copy_elements</a> (void *p_source_data, size_t source_index, void *p_dest_data, size_t dest_index, size_t element_size, size_t num_elements)</td></tr>
+<tr class="memdesc:a929a1a3db50a04108a24a969354b8a9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy elements from the source array to the destination array.  <a href="#a929a1a3db50a04108a24a969354b8a9e">More...</a><br /></td></tr>
+<tr class="separator:a929a1a3db50a04108a24a969354b8a9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb45f2f399753e13f935ecb344a5a96f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8c.html#aeb45f2f399753e13f935ecb344a5a96f">insert_element</a> (<a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a> handle, size_t index, void *p_data)</td></tr>
 <tr class="memdesc:aeb45f2f399753e13f935ecb344a5a96f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert an element into the array specified by the handle and index.  <a href="#aeb45f2f399753e13f935ecb344a5a96f">More...</a><br /></td></tr>
 <tr class="separator:aeb45f2f399753e13f935ecb344a5a96f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,7 +187,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af57fd03ed2fc1ab1895d2244fb0095de"></a>
+<a class="anchor" id="a929a1a3db50a04108a24a969354b8a9e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -219,7 +219,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>data_size</em>, </td>
+          <td class="paramname"><em>element_size</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -242,7 +242,7 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">source_index</td><td>- The starting index of the source array. The num_elements parameter specifies the number of elements to be copied. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">p_dest_data</td><td>- Pointer to the destination array. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dest_index</td><td>- The starting index of the destination array. The num_elements parameter specifies the number of elements to be copied. The destination array needs to be able to hold the number of elements. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">data_size</td><td>- Specifies the size of each data item in the array. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">element_size</td><td>- Specifies the size of each data item in the array. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">num_elements</td><td>- Specifies the number of elements to be copied. </td></tr>
   </table>
   </dd>

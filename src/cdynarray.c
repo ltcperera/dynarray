@@ -174,12 +174,12 @@ bool get_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
  *                The num_elements parameter specifies the number of elements
  *                to be copied. The destination array needs to be able to hold
  *                the number of elements.
- * \param[in]     data_size - Specifies the size of each data item in the array.
+ * \param[in]     element_size - Specifies the size of each data item in the array.
  * \param[in]     num_elements - Specifies the number of elements to be copied.
  */
 void copy_elements(void *p_source_data, size_t source_index,
                    void *p_dest_data, size_t dest_index,
-                   size_t data_size, size_t num_elements)
+                   size_t element_size, size_t num_elements)
 {
 
 }
@@ -212,9 +212,23 @@ bool insert_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
         void *p_new_backing_array = calloc(new_capacity, p_meta_data->element_size);
 
         if (p_new_backing_array) {
-          // Copy the elements before the current index
-          // Set the current element that was inserted
-          // Copy the elements after the current index
+          // Copy the source array to the target array
+          copy_elements(p_meta_data->p_backing_array,
+                        0 /* source index */,
+                        p_new_backing_array,
+                        0 /* destination index */,
+                        p_meta_data->element_size,
+                        p_meta_data->capacity);
+          // Free the old backing array and assign the new backing array
+          free(p_meta_data->p_backing_array);
+          p_meta_data->p_backing_array = p_new_backing_array;
+          p_meta_data->capacity = new_capacity; // Set new capacity
+          p_meta_data->logical_size += 1;       // Increment the size of the dynamic array
+
+          // Set the new element that was inserted
+          if (set_element(handle, index, p_data)) {
+            status = true;
+          }
         }
       }
     }
