@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Dynamic Array: Member List</title>
+<title>Dynamic Array: inc/common_utils.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,8 +38,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -60,9 +60,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -79,20 +78,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_bfccd401955b95cf8c75461437045ac0.html">inc</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
-<div class="title">_DYNARRAY_METADATA Member List</div>  </div>
+<div class="title">common_utils.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="common__utils_8h__dep__incl.png" border="0" usemap="#inc_2common__utils_8hdep" alt=""/></div>
+<map name="inc_2common__utils_8hdep" id="inc_2common__utils_8hdep">
+<area shape="rect" id="node2" href="cdynarray_8c.html" title="src/cdynarray.c" alt="" coords="5,80,117,107"/>
+<area shape="rect" id="node3" href="dynarray_8hpp.html" title="inc/dynarray.hpp" alt="" coords="141,80,259,107"/>
+<area shape="rect" id="node4" href="dynarray__tests_8cpp.html" title="src/dynarray_tests.cpp" alt="" coords="123,155,277,181"/>
+</map>
+</div>
+</div>
+<p><a href="common__utils_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:af5ada5761c5d6f3692f0c2bc1a587461"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common__utils_8h.html#af5ada5761c5d6f3692f0c2bc1a587461">CALCULATE_NEW_CAPACITY</a>(capacity)&#160;&#160;&#160;(capacity == 0) ? 1 :2 * capacity</td></tr>
+<tr class="separator:af5ada5761c5d6f3692f0c2bc1a587461"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="af5ada5761c5d6f3692f0c2bc1a587461"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CALCULATE_NEW_CAPACITY</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">capacity</td><td>)</td>
+          <td>&#160;&#160;&#160;(capacity == 0) ? 1 :2 * capacity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
-<p>This is the complete list of members for <a class="el" href="struct__DYNARRAY__METADATA.html">_DYNARRAY_METADATA</a>, including all inherited members.</p>
-<table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="struct__DYNARRAY__METADATA.html#a566021c96a552cf3ee8fb5bcfe5cfab1">capacity</a></td><td class="entry"><a class="el" href="struct__DYNARRAY__METADATA.html">_DYNARRAY_METADATA</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="struct__DYNARRAY__METADATA.html#a0b528ea375e5dce86ea751c60c3cd8df">element_size</a></td><td class="entry"><a class="el" href="struct__DYNARRAY__METADATA.html">_DYNARRAY_METADATA</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="struct__DYNARRAY__METADATA.html#ae57ed795f5df69324da40a9d14a368d9">logical_size</a></td><td class="entry"><a class="el" href="struct__DYNARRAY__METADATA.html">_DYNARRAY_METADATA</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="struct__DYNARRAY__METADATA.html#ae2d1f614ed35f040e09d0252cc16a3c7">p_backing_array</a></td><td class="entry"><a class="el" href="struct__DYNARRAY__METADATA.html">_DYNARRAY_METADATA</a></td><td class="entry"></td></tr>
-</table></div><!-- contents -->
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

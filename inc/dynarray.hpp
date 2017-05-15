@@ -19,6 +19,7 @@
 // SOFTWARE.
 
 #pragma once
+#include "common_utils.h"
 #include <cstdlib>
 #include <utility>
 
@@ -129,7 +130,7 @@ bool dynarray<T>::insert_element(size_t index, T element)
       // Resize the backing array to 2x its current capacity
       // (or 1 if its current capacity is 0) and copy the old contents to the
       // new array.
-      size_t new_capacity = (m_capacity == 0) ? 1 :2 * m_capacity;
+      size_t new_capacity = CALCULATE_NEW_CAPACITY(m_capacity);
       T *new_array = new T[new_capacity]{};
 
       // Allocation of new array failed. Return failure code

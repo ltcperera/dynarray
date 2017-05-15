@@ -171,7 +171,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">bad-alloc</td><td>exception if allocation fails </td></tr>
+    <tr><td class="paramname">bad_alloc</td><td>exception if allocation fails </td></tr>
   </table>
   </dd>
 </dl>
@@ -324,6 +324,12 @@ template&lt;class T &gt; </div>
   </table>
   </dd>
 </dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">bad_alloc</td><td>exception if allocation fails </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -400,8 +406,7 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 
 <p>Sets the element at the specified index. </p>
-<p>The index needs to be within the capacity of the array. If not the function will return a failure code.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>The index needs to be within the capacity of the array. If not the function will return a failure code. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>- A zero-based index ranging from from 0 to the size of the array - 1. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">element</td><td>- The element to be stored at the specified index </td></tr>

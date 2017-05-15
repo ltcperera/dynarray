@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['subject',['subject',['../structBOOK.html#ac48112754ad2e19240774e4484f80d2e',1,'BOOK']]]
+  ['p_5fbacking_5farray',['p_backing_array',['../struct__DYNARRAY__METADATA.html#ae2d1f614ed35f040e09d0252cc16a3c7',1,'_DYNARRAY_METADATA']]]
 ];
