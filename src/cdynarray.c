@@ -8,8 +8,8 @@
    copies of the Software, and to permit persons to whom the Software is
    furnished to do so, subject to the following conditions:
 
-   The above copyright notice and this permission notice shall be included in all
-   copies or substantial portions of the Software.
+   The above copyright notice and this permission notice shall be included in
+   all copies or substantial portions of the Software.
 
    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -23,8 +23,8 @@
 #include "cdynarray.h"
 #include "common_utils.h"
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 /*!
  * \brief       Stores tracking information required to manage the array.
@@ -33,10 +33,13 @@
  */
 typedef struct _DYNARRAY_METADATA
 {
-  size_t capacity;           /**< The number of elements that can be stored in the backing array */
-  size_t element_size;       /**< The size of each element stored in the array */
-  size_t logical_size;       /**< The size of the backing array. This is not necessarily the same as the capacity */
-  void *p_backing_array;     /**< The backing array that will hold the array data */
+    size_t capacity;     /**< The number of elements that can be stored in the
+                            backing array */
+    size_t element_size; /**< The size of each element stored in the array */
+    size_t logical_size; /**< The size of the backing array. This is not
+                            necessarily the same as the capacity */
+    void *
+        p_backing_array; /**< The backing array that will hold the array data */
 } DYNARRAY_METADATA;
 
 /*!
@@ -48,37 +51,42 @@ typedef struct _DYNARRAY_METADATA
  */
 DYNARRAY_HANDLE init_array(size_t num_elements, size_t element_size)
 {
-  /* Allocate metadata structure first. This structure will store information
-     about the dynamic array. */
+    /* Allocate metadata structure first. This structure will store information
+       about the dynamic array. */
 
-  DYNARRAY_METADATA *p_meta_data = malloc(sizeof(DYNARRAY_METADATA));
+    DYNARRAY_METADATA *p_meta_data = malloc(sizeof(DYNARRAY_METADATA));
 
-  if (p_meta_data) {
-    /* Initialize metadata structure to known initialization defaults */
-    p_meta_data->capacity = 0;
+    if (p_meta_data)
+    {
+        /* Initialize metadata structure to known initialization defaults */
+        p_meta_data->capacity = 0;
 
-    /* Meta data structure successfully allocated. Allocate backing array
-         that will store the elements of the dynamic array */
-    void *p_backing_array = calloc(num_elements, element_size);
+        /* Meta data structure successfully allocated. Allocate backing array
+             that will store the elements of the dynamic array */
+        void *p_backing_array = calloc(num_elements, element_size);
 
-    if (p_backing_array) {
-      /* Backing array was successfully allocated.
-           Set metadata members accordingly. */
-      p_meta_data->p_backing_array = p_backing_array;
+        if (p_backing_array)
+        {
+            /* Backing array was successfully allocated.
+                 Set metadata members accordingly. */
+            p_meta_data->p_backing_array = p_backing_array;
 
-      /* Capacity and element size are set accordingly */
-      p_meta_data->capacity = num_elements;
-      p_meta_data->element_size = element_size;
+            /* Capacity and element size are set accordingly */
+            p_meta_data->capacity = num_elements;
+            p_meta_data->element_size = element_size;
+        }
+        else
+        {
+            /* Allocation of backing array failed. De-allocate metadata
+               structure
+                 as well since there is no longer a use for the metadata
+               structure. */
+            free(p_meta_data);
+            p_meta_data = NULL;
+        }
     }
-    else {
-      /* Allocation of backing array failed. De-allocate metadata structure
-           as well since there is no longer a use for the metadata structure. */
-      free(p_meta_data);
-      p_meta_data = NULL;
-    }
-  }
 
-  return p_meta_data;
+    return p_meta_data;
 }
 
 /*!
@@ -87,20 +95,22 @@ DYNARRAY_HANDLE init_array(size_t num_elements, size_t element_size)
  */
 void free_array(DYNARRAY_HANDLE handle)
 {
-  if (handle) {
-    // Handle is non-zero, get DYNARRAY_METADATA from handle
-    DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA*) handle;
+    if (handle)
+    {
+        // Handle is non-zero, get DYNARRAY_METADATA from handle
+        DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA *)handle;
 
-    // De-allocate backing array first.
-    if (p_meta_data->p_backing_array) {
-      free(p_meta_data->p_backing_array);
-      p_meta_data->p_backing_array = NULL;
+        // De-allocate backing array first.
+        if (p_meta_data->p_backing_array)
+        {
+            free(p_meta_data->p_backing_array);
+            p_meta_data->p_backing_array = NULL;
+        }
+
+        // Free the metadata structure
+        free(p_meta_data);
+        p_meta_data = NULL;
     }
-
-    // Free the metadata structure
-    free(p_meta_data);
-    p_meta_data = NULL;
-  }
 }
 
 /*!
@@ -114,23 +124,28 @@ void free_array(DYNARRAY_HANDLE handle)
  */
 bool set_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
 {
-  bool status = false;
-  if (handle) {
-    // Handle is non-zero, get DYNARRAY_METADATA from handle
-    DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA*) handle;
+    bool status = false;
+    if (handle)
+    {
+        // Handle is non-zero, get DYNARRAY_METADATA from handle
+        DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA *)handle;
 
-    // Ensure array index is within capacity and backing array is valid
-    if (p_meta_data->p_backing_array && index < p_meta_data->capacity) {
-      // Copy the data into the backing array. The size is determined by the element_size
-      //   that was passed in when the dynamic array was allocated.
-      // Element address is calculated as the base + the size of the data item * index
-      void *element_address = p_meta_data->p_backing_array + (p_meta_data->element_size * index);
-      memcpy(element_address, p_data, p_meta_data->element_size);
-      status = true;
+        // Ensure array index is within capacity and backing array is valid
+        if (p_meta_data->p_backing_array && index < p_meta_data->capacity)
+        {
+            // Copy the data into the backing array. The size is determined by
+            // the element_size
+            //   that was passed in when the dynamic array was allocated.
+            // Element address is calculated as the base + the size of the data
+            // item * index
+            void *element_address = p_meta_data->p_backing_array +
+                                    (p_meta_data->element_size * index);
+            memcpy(element_address, p_data, p_meta_data->element_size);
+            status = true;
+        }
     }
-  }
 
-  return status;
+    return status;
 }
 
 /*!
@@ -139,29 +154,34 @@ bool set_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
  *                the dynamic array identified by the specified handle.
  * \param[in]     handle - The handle of the dynamic array
  * \param[in]     index - position of the array element to be returned
- * \param[in,out] p_data - pointer to data element containing data to be returned
+ * \param[in,out] p_data - pointer to data element containing data to be
+ * returned
  */
 bool get_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
 {
-  bool status = false;
-  if (handle) {
-    // Handle is non-zero, get DYNARRAY_METADATA from handle
-    DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA*) handle;
+    bool status = false;
+    if (handle)
+    {
+        // Handle is non-zero, get DYNARRAY_METADATA from handle
+        DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA *)handle;
 
-    // Ensure array index is within capacity and backing array is valid
-    if (p_meta_data->p_backing_array && index < p_meta_data->capacity) {
-      void *element_address = p_meta_data->p_backing_array + (p_meta_data->element_size * index);
-      memcpy(p_data, element_address, p_meta_data->element_size);
-      status = true;
+        // Ensure array index is within capacity and backing array is valid
+        if (p_meta_data->p_backing_array && index < p_meta_data->capacity)
+        {
+            void *element_address = p_meta_data->p_backing_array +
+                                    (p_meta_data->element_size * index);
+            memcpy(p_data, element_address, p_meta_data->element_size);
+            status = true;
+        }
     }
-  }
 
-  return status;
+    return status;
 }
 
 /*!
  * \brief         Copy elements from the source array to the destination array.
- * \details       Copies elements from the specified index on the source array to
+ * \details       Copies elements from the specified index on the source array
+ * to
  *                the destination array at the specified index. The destination
  *                array needs to be able to hold the specified number of data
  *                elements of the specified size.
@@ -174,14 +194,13 @@ bool get_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
  *                The num_elements parameter specifies the number of elements
  *                to be copied. The destination array needs to be able to hold
  *                the number of elements.
- * \param[in]     element_size - Specifies the size of each data item in the array.
+ * \param[in]     element_size - Specifies the size of each data item in the
+ * array.
  * \param[in]     num_elements - Specifies the number of elements to be copied.
  */
-void copy_elements(void *p_source_data, size_t source_index,
-                   void *p_dest_data, size_t dest_index,
-                   size_t element_size, size_t num_elements)
+void copy_elements(void *p_source_data, size_t source_index, void *p_dest_data,
+                   size_t dest_index, size_t element_size, size_t num_elements)
 {
-
 }
 
 /*!
@@ -195,45 +214,52 @@ void copy_elements(void *p_source_data, size_t source_index,
  */
 bool insert_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
 {
-  bool status = false;
-  if (handle) {
-    // Handle is non-zero, get DYNARRAY_METADATA from handle
-    DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA*) handle;
+    bool status = false;
+    if (handle)
+    {
+        // Handle is non-zero, get DYNARRAY_METADATA from handle
+        DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA *)handle;
 
-    // The index can be 0 if inserting at the beginning of the dynamic array
-    // The index can be equal to the size of the backing array if inserting
-    //   at the end of the dynamic array
-    if (index <= p_meta_data->logical_size) {
-      // The logical size of the backing array has reached its size
-      //   hence the backing array needs to be resized.
-      if (p_meta_data->logical_size == p_meta_data->capacity) {
-        // Resize the backing array for new element
-        size_t new_capacity = CALCULATE_NEW_CAPACITY(p_meta_data->capacity);
-        void *p_new_backing_array = calloc(new_capacity, p_meta_data->element_size);
+        // The index can be 0 if inserting at the beginning of the dynamic array
+        // The index can be equal to the size of the backing array if inserting
+        //   at the end of the dynamic array
+        if (index <= p_meta_data->logical_size)
+        {
+            // The logical size of the backing array has reached its size
+            //   hence the backing array needs to be resized.
+            if (p_meta_data->logical_size == p_meta_data->capacity)
+            {
+                // Resize the backing array for new element
+                size_t new_capacity =
+                    CALCULATE_NEW_CAPACITY(p_meta_data->capacity);
+                void *p_new_backing_array =
+                    calloc(new_capacity, p_meta_data->element_size);
 
-        if (p_new_backing_array) {
-          // Copy the source array to the target array
-          copy_elements(p_meta_data->p_backing_array,
-                        0 /* source index */,
-                        p_new_backing_array,
-                        0 /* destination index */,
-                        p_meta_data->element_size,
-                        p_meta_data->capacity);
-          // Free the old backing array and assign the new backing array
-          free(p_meta_data->p_backing_array);
-          p_meta_data->p_backing_array = p_new_backing_array;
-          p_meta_data->capacity = new_capacity; // Set new capacity
-          p_meta_data->logical_size += 1;       // Increment the size of the dynamic array
+                if (p_new_backing_array)
+                {
+                    // Copy the source array to the target array
+                    copy_elements(
+                        p_meta_data->p_backing_array, 0 /* source index */,
+                        p_new_backing_array, 0 /* destination index */,
+                        p_meta_data->element_size, p_meta_data->capacity);
+                    // Free the old backing array and assign the new backing
+                    // array
+                    free(p_meta_data->p_backing_array);
+                    p_meta_data->p_backing_array = p_new_backing_array;
+                    p_meta_data->capacity = new_capacity; // Set new capacity
+                    p_meta_data->logical_size +=
+                        1; // Increment the size of the dynamic array
 
-          // Set the new element that was inserted
-          if (set_element(handle, index, p_data)) {
-            status = true;
-          }
+                    // Set the new element that was inserted
+                    if (set_element(handle, index, p_data))
+                    {
+                        status = true;
+                    }
+                }
+            }
         }
-      }
     }
-  }
-  return status;
+    return status;
 }
 
 /*!
@@ -243,7 +269,7 @@ bool insert_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
  */
 bool delete_element(DYNARRAY_HANDLE handle, size_t index)
 {
-  return false;
+    return false;
 }
 
 /*!
@@ -254,13 +280,14 @@ bool delete_element(DYNARRAY_HANDLE handle, size_t index)
  */
 size_t array_capacity(DYNARRAY_HANDLE handle)
 {
-  size_t capacity = 0;
+    size_t capacity = 0;
 
-  if (handle) {
-    // Handle is non-zero, get DYNARRAY_METADATA from handle
-    DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA*) handle;
-    capacity = p_meta_data->capacity;
-  }
+    if (handle)
+    {
+        // Handle is non-zero, get DYNARRAY_METADATA from handle
+        DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA *)handle;
+        capacity = p_meta_data->capacity;
+    }
 
-  return capacity;
+    return capacity;
 }

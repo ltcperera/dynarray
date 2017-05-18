@@ -8,8 +8,8 @@
    copies of the Software, and to permit persons to whom the Software is
    furnished to do so, subject to the following conditions:
 
-   The above copyright notice and this permission notice shall be included in all
-   copies or substantial portions of the Software.
+   The above copyright notice and this permission notice shall be included in
+   all copies or substantial portions of the Software.
 
    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -20,10 +20,10 @@
    SOFTWARE.
 */
 #pragma once
-#include <stdlib.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
-typedef void* DYNARRAY_HANDLE; /* Handle to array metadata passed around */
+typedef void *DYNARRAY_HANDLE; /* Handle to array metadata passed around */
 
 /* Initialize a dynamic array and return a handle to the array created */
 DYNARRAY_HANDLE init_array(size_t num_elements, size_t size_of_element);
@@ -31,13 +31,15 @@ DYNARRAY_HANDLE init_array(size_t num_elements, size_t size_of_element);
 /* Free the dynamic array specified by the handle */
 void free_array(DYNARRAY_HANDLE handle);
 
-/* Set the specified data item within the dynamic array at the specified index */
+/* Set the specified data item within the dynamic array at the specified index
+ */
 bool set_element(DYNARRAY_HANDLE handle, size_t index, void *p_data);
 
 /* Get the data item at the specified index */
 bool get_element(DYNARRAY_HANDLE handle, size_t index, void *p_data);
 
-/* Insert the specified data item into the dynamic array at the specified index */
+/* Insert the specified data item into the dynamic array at the specified index
+ */
 bool insert_element(DYNARRAY_HANDLE handle, size_t index, void *p_data);
 
 /* Delete the element at the specified index */
