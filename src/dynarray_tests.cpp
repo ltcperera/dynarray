@@ -237,9 +237,16 @@ TEST(CPPInterface, DeleteElements)
 // Tests for C-Interfaces
 // ======================
 
+/// Test zero sized dynamic array
+TEST(CInterface, ConstructionZeroLength)
+{
+    DYNARRAY_HANDLE handle = init_array(0, sizeof(int));
+    EXPECT_EQ(array_capacity(handle), 0);
+}
+
 /// Test construction of a dynamic array using the C interface
 ///   The test allocates the array and checks its capacity.
-TEST(CInterface, Construction)
+TEST(CInterface, ConstructionSpesifiedLength)
 {
     // Allocate dynamic array for 10 integers
     DYNARRAY_HANDLE handle = init_array(10, sizeof(int));
