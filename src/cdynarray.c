@@ -181,10 +181,9 @@ bool get_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
 /*!
  * \brief         Copy elements from the source array to the destination array.
  * \details       Copies elements from the specified index on the source array
- * to
- *                the destination array at the specified index. The destination
- *                array needs to be able to hold the specified number of data
- *                elements of the specified size.
+ *                to the destination array at the specified index. The
+ *                destination array needs to be able to hold the specified
+ *                number of data elements of the specified size.
  * \param[in]     p_source_data - Pointer to the source array.
  * \param[in]     source_index - The starting index of the source array.
  *                The num_elements parameter specifies the number of elements
@@ -195,12 +194,93 @@ bool get_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
  *                to be copied. The destination array needs to be able to hold
  *                the number of elements.
  * \param[in]     element_size - Specifies the size of each data item in the
- * array.
+ *                array.
  * \param[in]     num_elements - Specifies the number of elements to be copied.
  */
 void copy_elements(void *p_source_data, size_t source_index, void *p_dest_data,
                    size_t dest_index, size_t element_size, size_t num_elements)
 {
+    void *p_source_address = p_source_data + (source_index * element_size);
+    void *p_dest_address = p_dest_data + (dest_index * element_size);
+    memcpy(p_dest_address, p_source_address, element_size * num_elements);
+}
+
+/*!
+ * \brief         Resizes the array and inserts the specified data at the index
+ *                specified.
+ * \details       This function is called when the backing array has reached its
+ *                capacity and needs to be resized to accommodate the new
+ *                element to be added.
+ */
+static bool resize_and_insert(DYNARRAY_HANDLE handle, size_t index,
+                              void *p_data)
+{
+    bool status = false;
+    if (handle)
+    {
+        // Handle is non-zero, get DYNARRAY_METADATA from handle
+        DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA *)handle;
+
+        // Resize the backing array for the new element
+        size_t new_capacity = CALCULATE_NEW_CAPACITY(p_meta_data->capacity);
+        void *p_new_backing_array =
+            calloc(new_capacity, p_meta_data->element_size);
+
+        if (p_new_backing_array)
+        {
+            if (index == 0)
+            {
+                // Inserting element at the beginning of the backing array
+                // Preserve the first element for the new data and copy the data
+                // from the old backing array to the new backing array
+                copy_elements(p_meta_data->p_backing_array, 0,
+                              p_new_backing_array, 1, p_meta_data->element_size,
+                              p_meta_data->logical_size);
+            }
+            else if (index == p_meta_data->capacity)
+            {
+                // Inserting element at the end of the backing array
+                // Preserve the last element for the new data and copy the data
+                // from the old backing array to the new backing array
+                copy_elements(p_meta_data->p_backing_array, 0,
+                              p_new_backing_array, 0, p_meta_data->element_size,
+                              p_meta_data->logical_size);
+            }
+            else
+            {
+                // Inserting element at the middle of the backing array
+                // Preserve space for the new data item to be added at the
+                // position identified by the index.
+
+                // Copy the first half of the backing array.
+                copy_elements(p_meta_data->p_backing_array, 0,
+                              p_new_backing_array, 0, p_meta_data->element_size,
+                              index - 1);
+
+                // Copy the second half of the backing array.
+                copy_elements(p_meta_data->p_backing_array, index + 1,
+                              p_new_backing_array, index + 1,
+                              p_meta_data->element_size,
+                              p_meta_data->logical_size);
+            }
+
+            // Free the old backing array
+            free(p_meta_data->p_backing_array);
+
+            // Update the meta-data structure
+            p_meta_data->capacity = new_capacity;
+            p_meta_data->logical_size += 1; // Increment by the element added
+            p_meta_data->p_backing_array = p_new_backing_array;
+
+            // Set the new element that was inserted
+            if (set_element(handle, index, p_data))
+            {
+                status = true;
+            }
+        }
+    }
+
+    return status;
 }
 
 /*!
@@ -230,32 +310,12 @@ bool insert_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
             if (p_meta_data->logical_size == p_meta_data->capacity)
             {
                 // Resize the backing array for new element
-                size_t new_capacity =
-                    CALCULATE_NEW_CAPACITY(p_meta_data->capacity);
-                void *p_new_backing_array =
-                    calloc(new_capacity, p_meta_data->element_size);
-
-                if (p_new_backing_array)
-                {
-                    // Copy the source array to the target array
-                    copy_elements(
-                        p_meta_data->p_backing_array, 0 /* source index */,
-                        p_new_backing_array, 0 /* destination index */,
-                        p_meta_data->element_size, p_meta_data->capacity);
-                    // Free the old backing array and assign the new backing
-                    // array
-                    free(p_meta_data->p_backing_array);
-                    p_meta_data->p_backing_array = p_new_backing_array;
-                    p_meta_data->capacity = new_capacity; // Set new capacity
-                    p_meta_data->logical_size +=
-                        1; // Increment the size of the dynamic array
-
-                    // Set the new element that was inserted
-                    if (set_element(handle, index, p_data))
-                    {
-                        status = true;
-                    }
-                }
+                status = resize_and_insert(handle, index, p_data);
+            }
+            else
+            {
+                // No need to resize the backing array. Insert the element at
+                // the index while shifting elements to the right.
             }
         }
     }

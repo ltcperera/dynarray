@@ -136,6 +136,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a929a1a3db50a04108a24a969354b8a9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8c.html#a929a1a3db50a04108a24a969354b8a9e">copy_elements</a> (void *p_source_data, size_t source_index, void *p_dest_data, size_t dest_index, size_t element_size, size_t num_elements)</td></tr>
 <tr class="memdesc:a929a1a3db50a04108a24a969354b8a9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy elements from the source array to the destination array.  <a href="#a929a1a3db50a04108a24a969354b8a9e">More...</a><br /></td></tr>
 <tr class="separator:a929a1a3db50a04108a24a969354b8a9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdef922630cb6041446f52800959103a"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8c.html#abdef922630cb6041446f52800959103a">resize_and_insert</a> (<a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a> handle, size_t index, void *p_data)</td></tr>
+<tr class="memdesc:abdef922630cb6041446f52800959103a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes the array and inserts the specified data at the index specified.  <a href="#abdef922630cb6041446f52800959103a">More...</a><br /></td></tr>
+<tr class="separator:abdef922630cb6041446f52800959103a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb45f2f399753e13f935ecb344a5a96f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8c.html#aeb45f2f399753e13f935ecb344a5a96f">insert_element</a> (<a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a> handle, size_t index, void *p_data)</td></tr>
 <tr class="memdesc:aeb45f2f399753e13f935ecb344a5a96f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert an element into the array specified by the handle and index.  <a href="#aeb45f2f399753e13f935ecb344a5a96f">More...</a><br /></td></tr>
 <tr class="separator:aeb45f2f399753e13f935ecb344a5a96f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -426,6 +429,49 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="abdef922630cb6041446f52800959103a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool resize_and_insert </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>p_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resizes the array and inserts the specified data at the index specified. </p>
+<p>This function is called when the backing array has reached its capacity and needs to be resized to accommodate the new element to be added. </p>
 
 </div>
 </div>
