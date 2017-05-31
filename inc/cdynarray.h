@@ -47,3 +47,6 @@ bool delete_element(DYNARRAY_HANDLE handle, size_t index);
 
 /* Get the capacity of the backing array */
 size_t array_capacity(DYNARRAY_HANDLE handle);
+
+/* Get the logical size of the dynamic array */
+size_t array_size(DYNARRAY_HANDLE handle);

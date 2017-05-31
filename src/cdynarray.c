@@ -71,8 +71,9 @@ DYNARRAY_HANDLE init_array(size_t num_elements, size_t element_size)
                  Set metadata members accordingly. */
             p_meta_data->p_backing_array = p_backing_array;
 
-            /* Capacity and element size are set accordingly */
+            /* Set capacity, logical_size and element size accordingly */
             p_meta_data->capacity = num_elements;
+            p_meta_data->logical_size = num_elements;
             p_meta_data->element_size = element_size;
         }
         else
@@ -350,4 +351,24 @@ size_t array_capacity(DYNARRAY_HANDLE handle)
     }
 
     return capacity;
+}
+
+/*!
+ * \brief       Returns the logical size of the dynamic array identified by the
+ *              specified handle.
+ * \param[in]   handle - The handle of the dynamic array
+ * \return      The capacity of the allocated backing array
+ */
+size_t array_size(DYNARRAY_HANDLE handle)
+{
+    size_t size = 0;
+
+    if (handle)
+    {
+        // Handle is non-zero, get DYNARRAY_METADATA from handle
+        DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA *)handle;
+        size = p_meta_data->logical_size;
+    }
+
+    return size;
 }

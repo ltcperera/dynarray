@@ -38,7 +38,7 @@ typedef struct
     int book_id;
 } BOOK;
 
-/// Tests default constructor that constructs a 0 length array
+/// CPPInterface: Tests default constructor that constructs a 0 length array
 TEST(CPPInterface, ConstructionZeroLength)
 {
     dynarray<int> arr;
@@ -46,7 +46,7 @@ TEST(CPPInterface, ConstructionZeroLength)
     EXPECT_EQ(arr.array_capacity(), 0);
 }
 
-/// Tests constructor with specified array length
+/// CPPInterface: Tests constructor with specified array length
 TEST(CPPInterface, ConstructionSpesifiedLength)
 {
     dynarray<int> arr(20);
@@ -54,7 +54,7 @@ TEST(CPPInterface, ConstructionSpesifiedLength)
     EXPECT_EQ(arr.array_size(), 20);
 }
 
-/// Tests insertion of elements with resize operation
+/// CPPInterface: Tests insertion of elements with resize operation
 TEST(CPPInterface, ResizeOperationInsertFirst)
 {
     dynarray<int> arr;
@@ -81,7 +81,7 @@ TEST(CPPInterface, ResizeOperationInsertFirst)
     EXPECT_EQ(arr.array_size(), 3);
 }
 
-/// Tests insertion of elements at beginning, middle and end
+/// CPPInterface: Tests insertion of elements at beginning, middle and end
 TEST(CPPInterface, SetGetOperations)
 {
     // Allocate array for 5 elements (indexed 0 - 4)
@@ -102,7 +102,7 @@ TEST(CPPInterface, SetGetOperations)
     EXPECT_EQ(arr.get_element(4), 5);
 }
 
-/// Tests insertion of elements at beginning, middle and end
+/// CPPInterface: Tests insertion of elements at beginning, middle and end
 TEST(CPPInterface, InsertOperations)
 {
     // Allocate array for 5 elements (indexed 0 - 4)
@@ -119,8 +119,8 @@ TEST(CPPInterface, InsertOperations)
     EXPECT_EQ(arr.insert_element(0, 0xfa), true); // Insert 0xfa at index 0
     EXPECT_EQ(arr.array_size(), 6); // Size should have increased by one
 
-    // Capacity should have doubled from 5 to 10 since logical size would =
-    // capacity
+    // Capacity should have doubled from 5 to 10 since 
+    //    logical size would = capacity
     EXPECT_EQ(arr.array_capacity(), 10);
 
     EXPECT_EQ(arr.insert_element(3, 0xfb), true); // Insert 0xfb at index 3
@@ -141,7 +141,8 @@ TEST(CPPInterface, InsertOperations)
     EXPECT_EQ(arr.get_element(7), 0xfc);
 }
 
-/// Tests insertion of elements at beginning, middle and end (string type)
+/// CPPInterface: Tests insertion of elements at beginning, 
+///    middle and end (string type)
 TEST(CPPInterface, InsertOperationsString)
 {
     // Allocate array for 5 elements (indexed 0 - 4)
@@ -159,8 +160,8 @@ TEST(CPPInterface, InsertOperationsString)
               true);                // Insert 0xfa at index 0
     EXPECT_EQ(arr.array_size(), 6); // Size should have increased by one
 
-    // Capacity should have doubled from 5 to 10 since logical size would =
-    // capacity
+    // Capacity should have doubled from 5 to 10 since logical 
+    //    size would = capacity
     EXPECT_EQ(arr.array_capacity(), 10);
 
     EXPECT_EQ(arr.insert_element(3, "two hundred and fifty one"),
@@ -183,7 +184,7 @@ TEST(CPPInterface, InsertOperationsString)
     EXPECT_EQ(arr.get_element(7), "two hundred and fifty two");
 }
 
-/// Tests insertion of values of abstract data types
+/// CPPInterface: Tests insertion of values of abstract data types
 TEST(CPPInterface, InsertADTValues)
 {
     // Build book object that will be stored in the list
@@ -204,7 +205,8 @@ TEST(CPPInterface, InsertADTValues)
     EXPECT_EQ(strcmp(book.subject, book2.subject), 0);
 }
 
-/// Tests the deletion of elements at the beginning, middle and end
+/// CPPInterface: Tests the deletion of elements at the beginning,
+///    middle and end
 TEST(CPPInterface, DeleteElements)
 {
     // Allocate the array
@@ -237,29 +239,62 @@ TEST(CPPInterface, DeleteElements)
 // Tests for C-Interfaces
 // ======================
 
-/// Test zero sized dynamic array
+/// CInterface: Test zero sized dynamic array
 TEST(CInterface, ConstructionZeroLength)
 {
     DYNARRAY_HANDLE handle = init_array(0, sizeof(int));
+    EXPECT_EQ(array_size(handle), 0);
     EXPECT_EQ(array_capacity(handle), 0);
 
     // De-allocate the array
     free_array(handle);
 }
 
-/// Test construction of a dynamic array using the C interface
+/// CInterface: Test construction of a dynamic array using the C interface
 ///   The test allocates the array and checks its capacity.
 TEST(CInterface, ConstructionSpesifiedLength)
 {
     // Allocate dynamic array for 10 integers
     DYNARRAY_HANDLE handle = init_array(10, sizeof(int));
+    EXPECT_EQ(array_size(handle), 10);
     EXPECT_EQ(array_capacity(handle), 10);
 
     // De-allocate the array
     free_array(handle);
 }
 
-/// Test the storage of abstract data types in the dynamic array
+/// CInterface: Test insertion of elements with resize operation
+TEST(CInterface, ResizeOperationInsertFirst)
+{
+    // Start with a 0-sized array
+    DYNARRAY_HANDLE handle = init_array(0, sizeof(int));
+
+    // Data that will be inserted
+    int a[] = {1, 2, 3};
+
+    // Insert element at 0th index
+    EXPECT_EQ(insert_element(handle, 0, &a[0]), true);
+
+    // Expect the capacity and logical size increase to 1
+    EXPECT_EQ(array_capacity(handle), 1);
+    EXPECT_EQ(array_size(handle), 1);
+
+    // Insert element at 0th index
+    EXPECT_EQ(insert_element(handle, 0, &a[1]), true);
+
+    // Expect the array to resize to 2
+    EXPECT_EQ(array_capacity(handle), 2);
+    EXPECT_EQ(array_size(handle), 2);
+
+    // Insert element at 0th index
+    EXPECT_EQ(insert_element(handle, 0, &a[2]), true);
+
+    // Expect the array to resize to 4
+    EXPECT_EQ(array_capacity(handle), 4);
+    EXPECT_EQ(array_size(handle), 3);
+}
+
+/// CInterface: Test the storage of abstract data types in the dynamic array
 TEST(CInterface, InsertADTValues)
 {
     // Build book object that will be stored in the list

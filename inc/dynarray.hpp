@@ -40,9 +40,9 @@ template <class T> class dynarray
 
   private:
     bool resize_array(size_t newsize);
-    T *mp_array;       // The backing array that stores the data
-    size_t m_capacity; // Capacity of the backing array
-    size_t m_size;     // The logical size of the dynamic array
+    T *mp_array;           // The backing array that stores the data
+    size_t m_capacity;     // Capacity of the backing array
+    size_t m_logical_size; // The logical size of the dynamic array
     // The logical size changes when elements are inserted/deleted
 };
 
@@ -63,7 +63,7 @@ template <class T> dynarray<T>::dynarray(size_t size)
     // bad_alloc exception would have been thrown at this point if allocation
     // failed
     m_capacity = size;
-    m_size = size;
+    m_logical_size = size;
 }
 
 //! \brief    Deallocates memory allocated for the dynamic array
@@ -80,7 +80,7 @@ template <class T> dynarray<T>::~dynarray()
 template <class T> T dynarray<T>::get_element(size_t index)
 {
     T retVal;
-    if (mp_array && index < m_size)
+    if (mp_array && index < m_logical_size)
     {
         retVal = mp_array[index];
     }
@@ -98,7 +98,7 @@ template <class T> T dynarray<T>::get_element(size_t index)
 template <class T> bool dynarray<T>::set_element(size_t index, T element)
 {
     bool retval = false;
-    if (mp_array && index < m_size)
+    if (mp_array && index < m_logical_size)
     {
         // Store the element at the index
         mp_array[index] = element;
@@ -120,11 +120,11 @@ template <class T> bool dynarray<T>::insert_element(size_t index, T element)
     bool retval = false;
 
     // Note: Index can be 0 if inserting new lements at the beginning
-    // Note: Index can be == m_size if inserting elements at the end
-    if (index <= m_size)
+    // Note: Index can be == m_logical_size if inserting elements at the end
+    if (index <= m_logical_size)
     {
         // Index is valid
-        if (m_size == m_capacity)
+        if (m_logical_size == m_capacity)
         {
             // The logical size of the backing array has reached its capacity.
             // Resize the backing array to 2x its current capacity
@@ -156,7 +156,7 @@ template <class T> bool dynarray<T>::insert_element(size_t index, T element)
             mp_array = new_array; // Assign new array
 
             mp_array[index] = element; // Store the new element at the index
-            m_size += 1;               // Increment the logical size
+            m_logical_size += 1;               // Increment the logical size
 
             m_capacity =
                 new_capacity; // Update the capacity of the backing array
@@ -164,10 +164,10 @@ template <class T> bool dynarray<T>::insert_element(size_t index, T element)
         else
         {
             T temp = element; // Store the element in the temporary storage
-            m_size += 1;      // Increment the size by 1
+            m_logical_size += 1;      // Increment the size by 1
 
             // Move each element to the right
-            for (size_t i = index; i < m_size; ++i)
+            for (size_t i = index; i < m_logical_size; ++i)
             {
                 std::swap(mp_array[i], temp);
             }
@@ -187,13 +187,13 @@ template <class T> bool dynarray<T>::delete_element(size_t index)
     bool retval = false;
 
     // Ensure that the array is valid and the size and index are within range
-    if (mp_array && m_size > 0 && index < m_size)
+    if (mp_array && m_logical_size > 0 && index < m_logical_size)
     {
         mp_array[index] = {0}; // Clear existing element
-        m_size -= 1;           // Decrement the size of the backing array by 1
+        m_logical_size -= 1;           // Decrement the size of the backing array by 1
 
         // Sift all elements past the deleted element to the left
-        for (size_t i = index; i < m_size; ++i)
+        for (size_t i = index; i < m_logical_size; ++i)
         {
             std::swap(mp_array[i], mp_array[i + 1]);
         }
@@ -214,12 +214,12 @@ template <class T> size_t dynarray<T>::array_capacity()
 //! \return     logical size of the backing array
 template <class T> size_t dynarray<T>::array_size()
 {
-    return m_size;
+    return m_logical_size;
 }
 
 //! \brief      Returns whether or not the array is empty
 //! \return     TRUE - array is empty, FALSE otherwise
 template <class T> bool dynarray<T>::is_empty()
 {
-    return (m_size == 0);
+    return (m_logical_size == 0);
 }

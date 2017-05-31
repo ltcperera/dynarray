@@ -138,6 +138,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a4d831c3d77f6aad65229bfba06d82461"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8h.html#a4d831c3d77f6aad65229bfba06d82461">array_capacity</a> (<a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a> handle)</td></tr>
 <tr class="memdesc:a4d831c3d77f6aad65229bfba06d82461"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the capacity of the array identified by the specified handle.  <a href="#a4d831c3d77f6aad65229bfba06d82461">More...</a><br /></td></tr>
 <tr class="separator:a4d831c3d77f6aad65229bfba06d82461"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6f95f9a32c3369f28dcbf96dd243ee3"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cdynarray_8h.html#ae6f95f9a32c3369f28dcbf96dd243ee3">array_size</a> (<a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a> handle)</td></tr>
+<tr class="memdesc:ae6f95f9a32c3369f28dcbf96dd243ee3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the logical size of the dynamic array identified by the specified handle.  <a href="#ae6f95f9a32c3369f28dcbf96dd243ee3">More...</a><br /></td></tr>
+<tr class="separator:ae6f95f9a32c3369f28dcbf96dd243ee3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a class="anchor" id="ab7f7c5d53a1c94ff24ca72eca40e51b2"></a>
@@ -168,6 +171,31 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the capacity of the array identified by the specified handle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>- The handle of the dynamic array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The capacity of the allocated backing array </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae6f95f9a32c3369f28dcbf96dd243ee3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t array_size </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cdynarray_8h.html#ab7f7c5d53a1c94ff24ca72eca40e51b2">DYNARRAY_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>handle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the logical size of the dynamic array identified by the specified handle. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>- The handle of the dynamic array </td></tr>
