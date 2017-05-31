@@ -242,6 +242,9 @@ TEST(CInterface, ConstructionZeroLength)
 {
     DYNARRAY_HANDLE handle = init_array(0, sizeof(int));
     EXPECT_EQ(array_capacity(handle), 0);
+
+    // De-allocate the array
+    free_array(handle);
 }
 
 /// Test construction of a dynamic array using the C interface
@@ -257,7 +260,7 @@ TEST(CInterface, ConstructionSpesifiedLength)
 }
 
 /// Test the storage of abstract data types in the dynamic array
-TEST(CInterface, AbstractDataTypes)
+TEST(CInterface, InsertADTValues)
 {
     // Build book object that will be stored in the list
     BOOK book;
@@ -278,6 +281,6 @@ TEST(CInterface, AbstractDataTypes)
     EXPECT_EQ(strcmp(book.author, book2.author), 0);
     EXPECT_EQ(strcmp(book.subject, book2.subject), 0);
 
+    // De-allocate the array
     free_array(handle);
-    // EXPECT_EQ(sizeof(BOOK), 204);
 }
