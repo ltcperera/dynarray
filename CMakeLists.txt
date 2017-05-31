@@ -1,4 +1,6 @@
 cmake_minimum_required (VERSION 3.5)
+# Enable target debugging via VSCode CMake tools
+include(CMakeToolsHelpers OPTIONAL)
 
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
