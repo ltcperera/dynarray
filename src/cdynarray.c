@@ -274,10 +274,7 @@ static bool resize_and_insert(DYNARRAY_HANDLE handle, size_t index,
             p_meta_data->p_backing_array = p_new_backing_array;
 
             // Set the new element that was inserted
-            if (set_element(handle, index, p_data))
-            {
-                status = true;
-            }
+            status = set_element(handle, index, p_data);
         }
     }
 

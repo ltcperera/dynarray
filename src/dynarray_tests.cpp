@@ -62,26 +62,26 @@ TEST(CPPInterface, ResizeOperationInsertFirst)
     // Insert element at 0th index
     EXPECT_EQ(arr.insert_element(0, 1), true);
 
-    // Expect the array to resize to 1
+    // Expect the capacity and size to resize to 1
     EXPECT_EQ(arr.array_capacity(), 1);
     EXPECT_EQ(arr.array_size(), 1);
 
     // Insert element at 0th index
     EXPECT_EQ(arr.insert_element(0, 2), true);
 
-    // Expect the array to resize to 2
+    // Expect the capacity and size to resize to 2
     EXPECT_EQ(arr.array_capacity(), 2);
     EXPECT_EQ(arr.array_size(), 2);
 
     // Insert element at 0th index
     EXPECT_EQ(arr.insert_element(0, 3), true);
 
-    // Expect the array to resize to 4
+    // Expect capacity to resize to 4 and size to be incremented
     EXPECT_EQ(arr.array_capacity(), 4);
     EXPECT_EQ(arr.array_size(), 3);
 }
 
-/// CPPInterface: Tests insertion of elements at beginning, middle and end
+/// CPPInterface: Tests setting of elements at beginning, middle and end
 TEST(CPPInterface, SetGetOperations)
 {
     // Allocate array for 5 elements (indexed 0 - 4)
@@ -119,7 +119,7 @@ TEST(CPPInterface, InsertOperations)
     EXPECT_EQ(arr.insert_element(0, 0xfa), true); // Insert 0xfa at index 0
     EXPECT_EQ(arr.array_size(), 6); // Size should have increased by one
 
-    // Capacity should have doubled from 5 to 10 since 
+    // Capacity should have doubled from 5 to 10 since
     //    logical size would = capacity
     EXPECT_EQ(arr.array_capacity(), 10);
 
@@ -141,7 +141,7 @@ TEST(CPPInterface, InsertOperations)
     EXPECT_EQ(arr.get_element(7), 0xfc);
 }
 
-/// CPPInterface: Tests insertion of elements at beginning, 
+/// CPPInterface: Tests insertion of elements at beginning,
 ///    middle and end (string type)
 TEST(CPPInterface, InsertOperationsString)
 {
@@ -160,7 +160,7 @@ TEST(CPPInterface, InsertOperationsString)
               true);                // Insert 0xfa at index 0
     EXPECT_EQ(arr.array_size(), 6); // Size should have increased by one
 
-    // Capacity should have doubled from 5 to 10 since logical 
+    // Capacity should have doubled from 5 to 10 since logical
     //    size would = capacity
     EXPECT_EQ(arr.array_capacity(), 10);
 
@@ -292,6 +292,31 @@ TEST(CInterface, ResizeOperationInsertFirst)
     // Expect the array to resize to 4
     EXPECT_EQ(array_capacity(handle), 4);
     EXPECT_EQ(array_size(handle), 3);
+}
+
+/// CInterface: Tests setting of elements at beginning, middle and end
+TEST(CInterface, SetGetOperations)
+{
+    // Allocate array for 5 elements (indexed 0 - 4)
+    DYNARRAY_HANDLE handle = init_array(5, sizeof(int));
+
+    // Data that will be stored
+    int a[] = {1, 2, 3, 4, 5};
+    int b[5];
+
+    // Verify set operations
+    EXPECT_EQ(set_element(handle, 0, &a[0]), true);
+    EXPECT_EQ(set_element(handle, 1, &a[1]), true);
+    EXPECT_EQ(set_element(handle, 2, &a[2]), true);
+    EXPECT_EQ(set_element(handle, 3, &a[3]), true);
+    EXPECT_EQ(set_element(handle, 4, &a[4]), true);
+
+    // Verify get operations
+    EXPECT_EQ(get_element(handle, 0, &b[0]) && b[0] == a[0], true);
+    EXPECT_EQ(get_element(handle, 1, &b[1]) && b[1] == a[1], true);
+    EXPECT_EQ(get_element(handle, 2, &b[2]) && b[2] == a[2], true);
+    EXPECT_EQ(get_element(handle, 3, &b[3]) && b[3] == a[3], true);
+    EXPECT_EQ(get_element(handle, 4, &b[4]) && b[4] == a[4], true);
 }
 
 /// CInterface: Test the storage of abstract data types in the dynamic array
