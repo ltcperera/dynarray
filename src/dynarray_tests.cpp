@@ -292,6 +292,8 @@ TEST(CInterface, ResizeOperationInsertFirst)
     // Expect the array to resize to 4
     EXPECT_EQ(array_capacity(handle), 4);
     EXPECT_EQ(array_size(handle), 3);
+
+    free_array(handle);
 }
 
 /// CInterface: Tests setting of elements at beginning, middle and end
@@ -317,6 +319,53 @@ TEST(CInterface, SetGetOperations)
     EXPECT_EQ(get_element(handle, 2, &b[2]) && b[2] == a[2], true);
     EXPECT_EQ(get_element(handle, 3, &b[3]) && b[3] == a[3], true);
     EXPECT_EQ(get_element(handle, 4, &b[4]) && b[4] == a[4], true);
+
+    free_array(handle);
+}
+
+/// CInterface: Tests insertion of elements at the beginning, middle and end
+TEST(CInterface, InsertOperations)
+{
+    // Allocate array for 5 elements (indexed 0 - 4)
+    DYNARRAY_HANDLE handle = init_array(5, sizeof(int));
+
+    // Data that will be stored
+    int a[] = {1, 2, 3, 4, 5};
+    int b[] = {0xfa, 0xfb, 0xfc};
+    int c[8];
+
+    set_element(handle, 0, &a[0]);
+    set_element(handle, 1, &a[1]);
+    set_element(handle, 2, &a[2]);
+    set_element(handle, 3, &a[3]);
+    set_element(handle, 4, &a[4]);
+
+    // Verify insert operations
+    EXPECT_EQ(insert_element(handle, 0, &b[0]), true);
+    EXPECT_EQ(array_size(handle), 6); // Size should have increased by one
+
+    // Capacity should have doubled from 5 to 10 since
+    //    logic size would = capacity
+    EXPECT_EQ(array_capacity(handle), 10);
+
+    EXPECT_EQ(insert_element(handle, 3, &b[2]), true);
+    EXPECT_EQ(array_size(handle), 7); // Size should have increased by one
+    EXPECT_EQ(array_capacity(handle), 10); // No change in capacity
+    EXPECT_EQ(insert_element(handle, 7, &b[3]), true);
+    EXPECT_EQ(array_size(handle), 8); // Size should have increased by one
+    EXPECT_EQ(array_capacity(handle), 10); // No change in capacity
+
+    // Read back all values and verify
+    EXPECT_EQ(get_element(handle, 0, &c[0]) && c[0] == b[0], true); // Expected 0xfa
+    EXPECT_EQ(get_element(handle, 1, &c[1]) && c[1] == a[0], true); // Expected 1
+    EXPECT_EQ(get_element(handle, 2, &c[2]) && c[2] == a[1], true); // Expected 2
+    EXPECT_EQ(get_element(handle, 3, &c[3]) && c[3] == b[1], true); // Expected 0xfb
+    EXPECT_EQ(get_element(handle, 4, &c[4]) && c[4] == a[2], true); // Expected 3
+    EXPECT_EQ(get_element(handle, 5, &c[5]) && c[5] == a[3], true); // Expected 4
+    EXPECT_EQ(get_element(handle, 6, &c[6]) && c[6] == a[4], true); // Expected 5
+    EXPECT_EQ(get_element(handle, 7, &c[7]) && c[7] == b[2], true); // Expected 0xfc
+    
+    free_array(handle);
 }
 
 /// CInterface: Test the storage of abstract data types in the dynamic array
