@@ -132,7 +132,7 @@ bool set_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
         DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA *)handle;
 
         // Ensure array index is within capacity and backing array is valid
-        if (p_meta_data->p_backing_array && index < p_meta_data->capacity)
+        if (p_meta_data->p_backing_array && index < p_meta_data->logical_size)
         {
             // Copy the data into the backing array. The size is determined by
             // the element_size
@@ -166,8 +166,8 @@ bool get_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
         // Handle is non-zero, get DYNARRAY_METADATA from handle
         DYNARRAY_METADATA *p_meta_data = (DYNARRAY_METADATA *)handle;
 
-        // Ensure array index is within capacity and backing array is valid
-        if (p_meta_data->p_backing_array && index < p_meta_data->capacity)
+        // Ensure array index is within logical size and backing array is valid
+        if (p_meta_data->p_backing_array && index < p_meta_data->logical_size)
         {
             void *element_address = p_meta_data->p_backing_array +
                                     (p_meta_data->element_size * index);
@@ -314,6 +314,27 @@ bool insert_element(DYNARRAY_HANDLE handle, size_t index, void *p_data)
             {
                 // No need to resize the backing array. Insert the element at
                 // the index while shifting elements to the right.
+
+                // Allocate space for a temporary element for copying the data
+                // as we right shift each element.
+                void *p_temp_element = malloc(p_meta_data->element_size);
+                
+                p_meta_data->logical_size += 1; // Increment the logical size by 1
+                for (size_t i = p_meta_data->logical_size - 1; i >= index; --i)
+                {
+                    // Read last element of dynamic array
+                    get_element(handle, i, p_temp_element);
+                    // Store the last element in the new location
+                    set_element(handle, i + 1, p_temp_element);
+                }
+
+                // Store the new element
+                set_element(handle, index, p_data);
+
+                // Free temporary element
+                free(p_temp_element);
+
+                status = true;
             }
         }
     }
